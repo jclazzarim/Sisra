@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.5" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
+  <Properties>
+    <Property name="defaultCloseOperation" type="int" value="2"/>
+  </Properties>
+  <SyntheticProperties>
+    <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+  </SyntheticProperties>
+  <Events>
+    <EventHandler event="windowClosed" listener="java.awt.event.WindowListener" parameters="java.awt.event.WindowEvent" handler="formWindowClosed"/>
+  </Events>
+  <AuxValues>
+    <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_generateFQN" type="java.lang.Boolean" value="true"/>
+    <AuxValue name="FormSettings_generateMnemonicsCode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_i18nAutoMode" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_layoutCodeTarget" type="java.lang.Integer" value="1"/>
+    <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
+    <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
+    <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
+  </AuxValues>
+
+  <Layout>
+    <DimensionLayout dim="0">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Component id="jPanel" max="32767" attributes="0"/>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="btnGravar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="btnCancelar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+    <DimensionLayout dim="1">
+      <Group type="103" groupAlignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="jPanel" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btnCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btnGravar" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+      </Group>
+    </DimensionLayout>
+  </Layout>
+  <SubComponents>
+    <Container class="javax.swing.JPanel" name="jPanel">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
+      </Properties>
+
+      <Layout>
+        <DimensionLayout dim="0">
+          <Group type="103" groupAlignment="1" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lblNome" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblLogin" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblSenha" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="txtNome" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="txtRua" min="-2" pref="256" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="lblBairro" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="txtBairro" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="txtCpf" min="-2" pref="150" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="lblRG" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="txtRG" min="-2" pref="148" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="lblSexo" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="jcbSexo" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="lblDataNascimento" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="lblNumero" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Component id="txtNumero" max="32767" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="jxdpNascimento" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="lblGrupo" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                          <Component id="txtCidade" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="lblUF" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                          <Component id="jcbUF" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <Component id="lblPais" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jcbPais" min="-2" pref="199" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="lblContratacao" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jxdpContratacao" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="147" max="-2" attributes="0"/>
+                          <Component id="lblDemissao" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jxdpDemissao" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+        <DimensionLayout dim="1">
+          <Group type="103" groupAlignment="0" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jxdpDemissao" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="txtNome" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblNome" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblLogin" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCpf" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblRG" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtRG" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblSexo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jcbSexo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblDataNascimento" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jxdpNascimento" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblSenha" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtRua" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblBairro" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtBairro" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblNumero" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtNumero" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="lblGrupo" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtCidade" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblUF" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblPais" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jcbUF" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jcbPais" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="lblContratacao" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <Component id="jxdpContratacao" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                              <Component id="lblDemissao" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                  </Group>
+                  <EmptySpace max="-2" attributes="0"/>
+              </Group>
+          </Group>
+        </DimensionLayout>
+      </Layout>
+      <SubComponents>
+        <Component class="javax.swing.JTextField" name="txtNome">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblNome">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="* Nome:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblLogin">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="* CPF:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtCpf">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblSenha">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="* Rua:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtCidade">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCidadeActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblGrupo">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Cidade:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtRua">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblRG">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="RG:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtRG">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblBairro">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Bairro:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtBairro">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblUF">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="UF:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblSexo">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Sexo:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="jcbSexo">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="2">
+                <StringItem index="0" value="M"/>
+                <StringItem index="1" value="F"/>
+              </StringArray>
+            </Property>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblDataNascimento">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="* Data Nasc.:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblPais">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Pa&#xed;s:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblNumero">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="N&#xba;:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="txtNumero">
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblContratacao">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="* Data Contrata&#xe7;&#xe3;o:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="lblDemissao">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Data Demiss&#xe3;o:"/>
+          </Properties>
+        </Component>
+        <Component class="org.jdesktop.swingx.JXDatePicker" name="jxdpNascimento">
+        </Component>
+        <Component class="org.jdesktop.swingx.JXDatePicker" name="jxdpContratacao">
+        </Component>
+        <Component class="org.jdesktop.swingx.JXDatePicker" name="jxdpDemissao">
+        </Component>
+        <Component class="javax.swing.JComboBox" name="jcbUF">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="27">
+                <StringItem index="0" value="AC"/>
+                <StringItem index="1" value="AL"/>
+                <StringItem index="2" value="AP"/>
+                <StringItem index="3" value="AM"/>
+                <StringItem index="4" value="BA"/>
+                <StringItem index="5" value="CE"/>
+                <StringItem index="6" value="DF"/>
+                <StringItem index="7" value="ES"/>
+                <StringItem index="8" value="GO"/>
+                <StringItem index="9" value="MA"/>
+                <StringItem index="10" value="MT"/>
+                <StringItem index="11" value="MS"/>
+                <StringItem index="12" value="MG"/>
+                <StringItem index="13" value="PA"/>
+                <StringItem index="14" value="PB"/>
+                <StringItem index="15" value="PR"/>
+                <StringItem index="16" value="PE"/>
+                <StringItem index="17" value="PI"/>
+                <StringItem index="18" value="RJ"/>
+                <StringItem index="19" value="RN"/>
+                <StringItem index="20" value="RS"/>
+                <StringItem index="21" value="RO"/>
+                <StringItem index="22" value="RR"/>
+                <StringItem index="23" value="SC"/>
+                <StringItem index="24" value="SE"/>
+                <StringItem index="25" value="SP"/>
+                <StringItem index="26" value="TO"/>
+              </StringArray>
+            </Property>
+            <Property name="selectedIndex" type="int" value="15"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcbUFActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="jcbPais">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="194">
+                <StringItem index="0" value="Afeganist&#xe3;o"/>
+                <StringItem index="1" value="&#xc1;frica do Sul"/>
+                <StringItem index="2" value="Alb&#xe2;nia"/>
+                <StringItem index="3" value="Alemanha"/>
+                <StringItem index="4" value="Andorra"/>
+                <StringItem index="5" value="Angola"/>
+                <StringItem index="6" value="Antigua e Barbuda"/>
+                <StringItem index="7" value="Ar&#xe1;bia"/>
+                <StringItem index="8" value="Saudita"/>
+                <StringItem index="9" value="Arg&#xe9;lia"/>
+                <StringItem index="10" value="Argentina"/>
+                <StringItem index="11" value="Arm&#xea;nia"/>
+                <StringItem index="12" value="Austr&#xe1;lia"/>
+                <StringItem index="13" value="&#xc1;ustria"/>
+                <StringItem index="14" value="Azerbaij&#xe3;o"/>
+                <StringItem index="15" value="Bahamas"/>
+                <StringItem index="16" value="Bangladesh"/>
+                <StringItem index="17" value="Barbados"/>
+                <StringItem index="18" value="Bahrein"/>
+                <StringItem index="19" value="B&#xe9;lgica"/>
+                <StringItem index="20" value="Belize"/>
+                <StringItem index="21" value="Benin"/>
+                <StringItem index="22" value="Bielorr&#xfa;ssia (Belarus)"/>
+                <StringItem index="23" value="Bol&#xed;via"/>
+                <StringItem index="24" value="B&#xf3;snia Herzeg&#xf3;vina"/>
+                <StringItem index="25" value="Botsuana"/>
+                <StringItem index="26" value="Brasil"/>
+                <StringItem index="27" value="Brunei"/>
+                <StringItem index="28" value="Bulg&#xe1;ria"/>
+                <StringItem index="29" value="Burkina-Fasso"/>
+                <StringItem index="30" value="Burundi"/>
+                <StringItem index="31" value="But&#xe3;o"/>
+                <StringItem index="32" value="Cabo Verde"/>
+                <StringItem index="33" value="Camar&#xf5;es"/>
+                <StringItem index="34" value="Camboja"/>
+                <StringItem index="35" value="Canad&#xe1;"/>
+                <StringItem index="36" value="Catar"/>
+                <StringItem index="37" value="Cazaquist&#xe3;o"/>
+                <StringItem index="38" value="Chade"/>
+                <StringItem index="39" value="Chile"/>
+                <StringItem index="40" value="China"/>
+                <StringItem index="41" value="Chipre"/>
+                <StringItem index="42" value="Cingapura"/>
+                <StringItem index="43" value="Col&#xf4;mbia"/>
+                <StringItem index="44" value="Congo"/>
+                <StringItem index="45" value="Comores"/>
+                <StringItem index="46" value="Cor&#xe9;ia do Norte"/>
+                <StringItem index="47" value="Cor&#xe9;ia do Sul"/>
+                <StringItem index="48" value="Costa do Marfim"/>
+                <StringItem index="49" value="Costa Rica"/>
+                <StringItem index="50" value="Cro&#xe1;cia"/>
+                <StringItem index="51" value="Cuba"/>
+                <StringItem index="52" value="Dinamarca"/>
+                <StringItem index="53" value="Djibuti"/>
+                <StringItem index="54" value="Dominica"/>
+                <StringItem index="55" value="Egito"/>
+                <StringItem index="56" value="El Salvador"/>
+                <StringItem index="57" value="Emirados &#xc1;rabes Unidos"/>
+                <StringItem index="58" value="Equador"/>
+                <StringItem index="59" value="Eritr&#xe9;ia"/>
+                <StringItem index="60" value="Esc&#xf3;cia"/>
+                <StringItem index="61" value="Eslov&#xe1;quia"/>
+                <StringItem index="62" value="Eslov&#xea;nia"/>
+                <StringItem index="63" value="Espanha"/>
+                <StringItem index="64" value="Estados Unidos"/>
+                <StringItem index="65" value="Est&#xf4;nia"/>
+                <StringItem index="66" value="Eti&#xf3;pia"/>
+                <StringItem index="67" value="Federa&#xe7;&#xe3;o Russa"/>
+                <StringItem index="68" value="Fiji"/>
+                <StringItem index="69" value="Filipinas"/>
+                <StringItem index="70" value="Finl&#xe2;ndia"/>
+                <StringItem index="71" value="Formosa (Taiwan)"/>
+                <StringItem index="72" value="Fran&#xe7;a"/>
+                <StringItem index="73" value="Gab&#xe3;o"/>
+                <StringItem index="74" value="G&#xe2;mbia"/>
+                <StringItem index="75" value="Gana"/>
+                <StringItem index="76" value="Ge&#xf3;rgia"/>
+                <StringItem index="77" value="Granada"/>
+                <StringItem index="78" value="Gr&#xe9;cia"/>
+                <StringItem index="79" value="Guatemala"/>
+                <StringItem index="80" value="Guiana"/>
+                <StringItem index="81" value="Guin&#xe9;"/>
+                <StringItem index="82" value="Guin&#xe9; Bissau"/>
+                <StringItem index="83" value="Guin&#xe9; Equatorial"/>
+                <StringItem index="84" value="Haiti"/>
+                <StringItem index="85" value="Holanda"/>
+                <StringItem index="86" value="Honduras"/>
+                <StringItem index="87" value="Hungria"/>
+                <StringItem index="88" value="I&#xea;men"/>
+                <StringItem index="89" value="Ilhas Marshall"/>
+                <StringItem index="90" value="Ilhas Salom&#xe3;o"/>
+                <StringItem index="91" value="&#xcd;ndia"/>
+                <StringItem index="92" value="Indon&#xe9;sia"/>
+                <StringItem index="93" value="Ir&#xe3;"/>
+                <StringItem index="94" value="Iraque"/>
+                <StringItem index="95" value="Irlanda"/>
+                <StringItem index="96" value="Isl&#xe2;ndia Israel"/>
+                <StringItem index="97" value="It&#xe1;lia"/>
+                <StringItem index="98" value="Jamaica"/>
+                <StringItem index="99" value="Jap&#xe3;o"/>
+                <StringItem index="100" value="Jord&#xe2;nia"/>
+                <StringItem index="101" value="Kiribati"/>
+                <StringItem index="102" value="Kuweit"/>
+                <StringItem index="103" value="Laos"/>
+                <StringItem index="104" value="Lesoto"/>
+                <StringItem index="105" value="Let&#xf4;nia"/>
+                <StringItem index="106" value="L&#xed;bano"/>
+                <StringItem index="107" value="Lib&#xe9;ria"/>
+                <StringItem index="108" value="L&#xed;bia"/>
+                <StringItem index="109" value="Liechtenstein"/>
+                <StringItem index="110" value="Litu&#xe2;nia"/>
+                <StringItem index="111" value="Luxemburgo"/>
+                <StringItem index="112" value="Maced&#xf4;nia"/>
+                <StringItem index="113" value="Madagascar"/>
+                <StringItem index="114" value="Mal&#xe1;sia"/>
+                <StringItem index="115" value="Malau&#xed;"/>
+                <StringItem index="116" value="Maldivas"/>
+                <StringItem index="117" value="Mali"/>
+                <StringItem index="118" value="Malta"/>
+                <StringItem index="119" value="Marrocos"/>
+                <StringItem index="120" value="Maur&#xed;cio"/>
+                <StringItem index="121" value="Maurit&#xe2;nia"/>
+                <StringItem index="122" value="M&#xe9;xico"/>
+                <StringItem index="123" value="Mianmar"/>
+                <StringItem index="124" value="Micron&#xe9;sia"/>
+                <StringItem index="125" value="Mo&#xe7;ambique"/>
+                <StringItem index="126" value="Mold&#xe1;via"/>
+                <StringItem index="127" value="M&#xf4;naco"/>
+                <StringItem index="128" value="Mong&#xf3;lia"/>
+                <StringItem index="129" value="Nam&#xed;bia"/>
+                <StringItem index="130" value="Nauru"/>
+                <StringItem index="131" value="Nepal"/>
+                <StringItem index="132" value="Nicar&#xe1;gua"/>
+                <StringItem index="133" value="Niger"/>
+                <StringItem index="134" value="Nig&#xe9;ria"/>
+                <StringItem index="135" value="Noruega"/>
+                <StringItem index="136" value="Nova Zel&#xe2;ndia"/>
+                <StringItem index="137" value="Om&#xe3;"/>
+                <StringItem index="138" value="Panam&#xe1;"/>
+                <StringItem index="139" value="Palau"/>
+                <StringItem index="140" value="Papua Nova Guin&#xe9;"/>
+                <StringItem index="141" value="Paquist&#xe3;o"/>
+                <StringItem index="142" value="Paraguai"/>
+                <StringItem index="143" value="Peru"/>
+                <StringItem index="144" value="Pol&#xf4;nia"/>
+                <StringItem index="145" value="Porto Rico"/>
+                <StringItem index="146" value="Portugal"/>
+                <StringItem index="147" value="Qu&#xea;nia"/>
+                <StringItem index="148" value="Quirguist&#xe3;o"/>
+                <StringItem index="149" value="Reino Unido"/>
+                <StringItem index="150" value="Rep. Centro-Africana"/>
+                <StringItem index="151" value="Rep. Democr&#xe1;tica do Congo"/>
+                <StringItem index="152" value="Rep. Dominicana"/>
+                <StringItem index="153" value="Rep&#xfa;blica Tcheca"/>
+                <StringItem index="154" value="Rom&#xea;nia"/>
+                <StringItem index="155" value="Ruanda"/>
+                <StringItem index="156" value="Samoa"/>
+                <StringItem index="157" value="San Marino"/>
+                <StringItem index="158" value="Santa L&#xfa;cia"/>
+                <StringItem index="159" value="S&#xe3;o Crist&#xf3;v&#xe3;o e N&#xe9;vis"/>
+                <StringItem index="160" value="S&#xe3;o Tom&#xe9; e Pr&#xed;ncipe"/>
+                <StringItem index="161" value="S&#xe3;o Vicente e Granadinas"/>
+                <StringItem index="162" value="Seicheles"/>
+                <StringItem index="163" value="Senegal"/>
+                <StringItem index="164" value="Serra Leoa"/>
+                <StringItem index="165" value="S&#xe9;rvia e Montenegro"/>
+                <StringItem index="166" value="S&#xed;ria"/>
+                <StringItem index="167" value="Som&#xe1;lia"/>
+                <StringItem index="168" value="Sri Lanka"/>
+                <StringItem index="169" value="Suazil&#xe2;ndia"/>
+                <StringItem index="170" value="Sud&#xe3;o"/>
+                <StringItem index="171" value="Su&#xe9;cia"/>
+                <StringItem index="172" value="Su&#xed;&#xe7;a"/>
+                <StringItem index="173" value="Suriname"/>
+                <StringItem index="174" value="Tadjiquist&#xe3;o"/>
+                <StringItem index="175" value="Tail&#xe2;ndia"/>
+                <StringItem index="176" value="Tanz&#xe2;nia"/>
+                <StringItem index="177" value="Togo"/>
+                <StringItem index="178" value="Tonga"/>
+                <StringItem index="179" value="Trinidad e Tobago"/>
+                <StringItem index="180" value="Tun&#xed;sia"/>
+                <StringItem index="181" value="Turcomenist&#xe3;o"/>
+                <StringItem index="182" value="Turquia"/>
+                <StringItem index="183" value="Tuvalu"/>
+                <StringItem index="184" value="Ucr&#xe2;nia"/>
+                <StringItem index="185" value="Uganda"/>
+                <StringItem index="186" value="Uruguai"/>
+                <StringItem index="187" value="Uzbequist&#xe3;o"/>
+                <StringItem index="188" value="Vanuatu"/>
+                <StringItem index="189" value="Vaticano"/>
+                <StringItem index="190" value="Venezuela"/>
+                <StringItem index="191" value="Vietn&#xe3;"/>
+                <StringItem index="192" value="Z&#xe2;mbia"/>
+                <StringItem index="193" value="Zimb&#xe1;bue"/>
+              </StringArray>
+            </Property>
+            <Property name="selectedIndex" type="int" value="26"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcbPaisActionPerformed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JButton" name="btnGravar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Gravar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGravarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnCancelar">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cancelar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarActionPerformed"/>
+      </Events>
+    </Component>
+  </SubComponents>
+</Form>
