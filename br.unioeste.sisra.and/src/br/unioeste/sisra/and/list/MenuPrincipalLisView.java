@@ -1,9 +1,7 @@
 package br.unioeste.sisra.and.list;
 
-import br.unioeste.sisra.and.R;
-import android.R.anim;
 import android.content.Context;
-import android.view.Menu;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -11,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import br.unioeste.sisra.and.R;
 
 public class MenuPrincipalLisView extends ListView {
 
@@ -35,11 +34,6 @@ public class MenuPrincipalLisView extends ListView {
 		private class Tag {
 			TextView nome = new TextView(getContext());
 			ImageView icon = new ImageView(getContext());
-			ImageView seta = new ImageView(getContext());
-
-			public static final int ID_NOME = 0;
-			public static final int ID_ICON = 1;
-			public static final int ID_SETA = 2;
 		}
 
 		@Override
@@ -47,10 +41,11 @@ public class MenuPrincipalLisView extends ListView {
 			Tag tag;
 			if (convertView == null) {
 				tag = new Tag();
-				convertView = layout();
-				tag.nome = (TextView) convertView.findViewById(Tag.ID_NOME);
-				 tag.icon = (ImageView) convertView.findViewById(Tag.ID_ICON);
-				// tag.nome = (TextView) convertView.findViewById(Tag.ID_SETA);
+				LinearLayout root = new LinearLayout(getContext());
+				convertView = inflate(getContext(), R.layout.lay_list_principal, root);
+				//convertView = layout();
+				tag.nome = (TextView) convertView.findViewById(R.id.lay_list_principal_descricao);
+				 tag.icon = (ImageView) convertView.findViewById(R.id.lay_list_principal_icon);
 			} else {
 				tag = (Tag) getTag();
 			}
@@ -65,24 +60,6 @@ public class MenuPrincipalLisView extends ListView {
 			tag.nome.setText(str);
 
 			return convertView;
-		}
-
-		private LinearLayout layout() {
-			LinearLayout layout = new LinearLayout(getContext());
-			layout.setOrientation(LinearLayout.HORIZONTAL);
-			{
-				ImageView imgIcon = new ImageView(getContext());
-				imgIcon.setId(Tag.ID_ICON);
-				layout.addView(imgIcon);
-			}
-			// nome
-			{
-				TextView txNome = new TextView(getContext());
-				txNome.setTextSize(30);
-				txNome.setId(Tag.ID_NOME);
-				layout.addView(txNome);
-			}
-			return layout;
 		}
 
 	}

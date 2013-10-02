@@ -21,17 +21,21 @@ public final class R {
         public static final int activity_vertical_margin=0x7f040001;
     }
     public static final class drawable {
-        public static final int ic_conta_list=0x7f020000;
-        public static final int ic_launcher=0x7f020001;
-        public static final int ic_pedido_list=0x7f020002;
+        public static final int ic_arrow_left_right=0x7f020000;
+        public static final int ic_conta_list=0x7f020001;
+        public static final int ic_launcher=0x7f020002;
+        public static final int ic_pedido_list=0x7f020003;
     }
     public static final class id {
-        public static final int action_settings=0x7f080002;
+        public static final int action_settings=0x7f080004;
         public static final int btConta=0x7f080000;
         public static final int btPedido=0x7f080001;
+        public static final int lay_list_principal_descricao=0x7f080003;
+        public static final int lay_list_principal_icon=0x7f080002;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
+        public static final int lay_list_principal=0x7f030001;
     }
     public static final class menu {
         public static final int main=0x7f070000;
