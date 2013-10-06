@@ -4,13 +4,16 @@
  */
 package br.unioeste.sisra.modelo.to;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author J.C
  */
-public class FuncionarioTO {
+public class FuncionarioTO implements Serializable{
+    
+    private static final long serialVersionUID = -815590442199148424L;
     
     private Long id;
     private String nome;

@@ -4,11 +4,17 @@
  */
 package br.unioeste.sisra.modelo.to;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Charlinho
  */
-public class MesaTO {
+public class MesaTO implements Serializable {
+
+    private static final long serialVersionUID = -4129299364268095676L;
+    public static final String STATUS_OCUPADO = "Ocupado";
+    public static final String STATUS_LIVRE = "Livre";
     private String status;
     private String descricao;
     private String obs;
