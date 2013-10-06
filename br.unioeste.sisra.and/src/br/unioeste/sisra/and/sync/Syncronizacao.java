@@ -7,14 +7,16 @@ import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.List;
 
 import android.util.Log;
+import br.unioeste.sisra.modelo.listener.IRetornoSyncQuery;
 import br.unioeste.sisra.modelo.to.FuncionarioTO;
+import br.unioeste.sisra.utils.Codigo;
 
 public class Syncronizacao {
-	
-	
+
 	private int porta;
 	private String endereco;
 	private Socket syncSocket;
@@ -36,18 +38,25 @@ public class Syncronizacao {
 		entradaDoServidor = new ObjectInputStream(syncSocket.getInputStream());
 	}
 
-	public void syncFuncionario(int tipoAcessCodigo, String query) throws IOException, ClassNotFoundException {
+	public void syncQuery(int entidade, int tipoAcessCodigo, String query, IRetornoSyncQuery listener)
+			throws IOException, ClassNotFoundException {
 		// Consulta
-		// codigo da entidade funcionario
-		saidaParaServidor.write(0);
+		// codigo da entidade
+		saidaParaServidor.write(entidade);
 
 		// codigo do tipo de acesso
 		saidaParaServidor.write(tipoAcessCodigo);
 		saidaParaServidor.writeObject(query);
-		List<FuncionarioTO> retorno =  (List<FuncionarioTO>) entradaDoServidor.readObject();
-		for (FuncionarioTO funcionarioTO : retorno) {
-			Log.i("FUNCIONARIO", funcionarioTO.getNome());
-		}
+		
+		//Retornando a consulta
+		List retorno = (List) entradaDoServidor.readObject();
+
+		listener.onRetornoConsulta(retorno);
+	}
+
+	public boolean isClosed() {
+
+		return false;
 	}
 
 }

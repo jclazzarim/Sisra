@@ -1,25 +1,31 @@
 package br.unioeste.sisra.and;
 
+import br.unioeste.sisra.and.mesa.MesaActivity;
 import android.app.Activity;
-import android.os.AsyncTask;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import br.unioeste.sisra.and.list.MenuPrincipalLisView;
-import br.unioeste.sisra.and.sync.Syncronizacao;
-import br.unioeste.sisra.utils.Codigo;
+import android.widget.ListView;
 
 public class MainActivity extends Activity {
+
+	private MenuPrincipalListViewAdapter menuPrincipalListViewAdapter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		MenuPrincipalLisView menuLst = new MenuPrincipalLisView(this);
-		setContentView(menuLst);
-
+		setContentView(R.layout.activity_main);
 		configurarAcoes();
 	}
 
 	private void configurarAcoes() {
+		//Configundo a lista de menu principal
+		ListView lstMenu = (ListView) findViewById(R.id.id_list_menu_principal);
+		menuPrincipalListViewAdapter = new MenuPrincipalListViewAdapter(this, lstMenu, android.R.layout.simple_list_item_1);
+		lstMenu.setAdapter(menuPrincipalListViewAdapter);
+		
+		
+		
 //		// Teste de syncronização
 //		Button btConta = (Button) findViewById(R.id.btConta);
 //		btConta.setOnClickListener(new OnClickListener() {
@@ -56,27 +62,20 @@ public class MainActivity extends Activity {
 //			}
 //		});
 	}
-
-	private class SyncFuncionarioTask extends AsyncTask<String, String, String> {
-
-		@Override
-		protected String doInBackground(String... params) {
-			try {
-				Syncronizacao sync = new Syncronizacao("192.168.25.6", 6666);
-				sync.syncFuncionario(Codigo.TipoAcesso.SEACH, "");
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			return null;
-		}
-
-	}
-
+	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return true;
+	}
+
+	//-----------------------------------------------------------
+	// METODOS DE ABRIR AS TELAS
+	//-----------------------------------------------------------
+	public void abrirMesaListagem() {
+		Intent i = new Intent(MainActivity.this, MesaActivity.class);
+		startActivity(i);
 	}
 
 }

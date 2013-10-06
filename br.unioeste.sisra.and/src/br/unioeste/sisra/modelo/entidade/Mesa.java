@@ -76,7 +76,7 @@ public class Mesa {
     }
 
     public MesaTO toTO() {
-        String strStatus = status == STATUS_LIVRE? "Livre" : "Ocupado";
+        String strStatus = status == STATUS_LIVRE? MesaTO.STATUS_LIVRE: MesaTO.STATUS_OCUPADO;
         return new MesaTO(strStatus, descricao, obs, id);
     }
 }
