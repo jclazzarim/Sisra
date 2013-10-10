@@ -1,6 +1,5 @@
 package br.unioeste.sisra.persistencia.factory;
 
-import br.unioeste.sisra.persistencia.dao.ContaDao;
 import br.unioeste.sisra.persistencia.dao.FuncionarioDao;
 import br.unioeste.sisra.persistencia.dao.ItemDao;
 import br.unioeste.sisra.persistencia.dao.MesaDao;
@@ -26,10 +25,6 @@ public abstract class DaoFactory {
     public abstract ItemDao getItemDao();
 
     public abstract MesaDao getMesaDao();
-
-    public ContaDao getContaDao() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
   
 }

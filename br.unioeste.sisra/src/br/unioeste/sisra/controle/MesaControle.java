@@ -26,24 +26,17 @@ public class MesaControle {
     public MesaControle(IMesaListener listener) {
         this.listener = listener;
     }
-    
-    
-    public static Mesa mesaTOAdapter(MesaTO to){
-        
-        Mesa mesa = new Mesa();
-        mesa.setId(to.getId());
-        //mesa.setStatus(to.Status());
-        mesa.setDescricao(to.getDescricao());
-        mesa.setObs(to.getObs());
-        return mesa;
-    }
 
     public void gravar(Object retorno, boolean novo) throws Exception {
         MesaTO to = (MesaTO) retorno;
         //TODO precisamos criar uma validação de tadas dentro do validate
         new MesaValidacao().validar(retorno);
 
-        Mesa mesa = mesaTOAdapter(to);
+        Mesa mesa = new Mesa();
+        mesa.setId(to.getId());
+        //mesa.setStatus(to.Status());
+        mesa.setDescricao(to.getDescricao());
+        mesa.setObs(to.getObs());
 
 
 
