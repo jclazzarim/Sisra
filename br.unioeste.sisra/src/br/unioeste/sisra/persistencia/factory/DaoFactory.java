@@ -26,10 +26,8 @@ public abstract class DaoFactory {
     public abstract ItemDao getItemDao();
 
     public abstract MesaDao getMesaDao();
-
-    public ContaDao getContaDao() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
+    public abstract ContaDao getContaDao();
     
   
 }

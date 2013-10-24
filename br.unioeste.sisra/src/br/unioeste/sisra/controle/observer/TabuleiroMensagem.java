@@ -21,7 +21,7 @@ public class TabuleiroMensagem implements ISujeito{
     private String mensagem;
  
     public TabuleiroMensagem(){
-        this.observadores = new ArrayList<>();
+        this.observadores = new ArrayList<IObservador>();
     }
  
     public String getMessage() {

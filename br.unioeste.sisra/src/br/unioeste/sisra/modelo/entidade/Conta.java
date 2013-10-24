@@ -60,12 +60,12 @@ public class Conta {
         this.horaFechamento = horaFechamento;
     }
 
-    public Mesa getIdMesa() {
+    public Mesa getMesa() {
         return mesa;
     }
 
-    public void setIdMesa(Mesa idMesa) {
-        this.mesa = idMesa;
+    public void setMesa(Mesa mesa) {
+        this.mesa = mesa;
     }
 
     public Double getTotal() {

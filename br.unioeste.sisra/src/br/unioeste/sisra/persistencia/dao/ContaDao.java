@@ -65,7 +65,7 @@ public class ContaDao extends PostgresDao {
             ps.setTimestamp(paramCount++, conta.getHoraAbertura());
             ps.setTimestamp(paramCount++, conta.getHoraFechamento());
             ps.setDouble(paramCount++, conta.getTotal());
-            ps.setLong(paramCount++, conta.getIdMesa().getId());
+            ps.setLong(paramCount++, conta.getMesa().getId());
 
             ps.executeUpdate();
             log.trace("SQL: " + sql);
@@ -113,7 +113,7 @@ public class ContaDao extends PostgresDao {
             ps.setTimestamp(paramCount++, conta.getHoraAbertura());
             ps.setTimestamp(paramCount++, conta.getHoraFechamento());
             ps.setDouble(paramCount++, conta.getTotal());
-            ps.setLong(paramCount++, conta.getIdMesa().getId());
+            ps.setLong(paramCount++, conta.getMesa().getId());
 
             //Setando id a ser atualizado
             ps.setLong(paramCount++, pk);
@@ -272,7 +272,7 @@ public class ContaDao extends PostgresDao {
         MesaDao mesaDao = new MesaDao();
         Mesa[] mesas = mesaDao.findWhereCodigoEquals(idMesa);
         if (mesas.length > 0) {
-            conta.setIdMesa(mesas[0]);
+            conta.setMesa(mesas[0]);
         }
     }
 

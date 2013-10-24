@@ -15,6 +15,7 @@ import br.unioeste.sisra.and.sync.Syncronizacao;
 import br.unioeste.sisra.and.sync.SyncronizacaoFactory;
 import br.unioeste.sisra.controle.MesaControle;
 import br.unioeste.sisra.modelo.listener.IMesaListener;
+import br.unioeste.sisra.modelo.listener.IRetornoSyncQuery;
 import br.unioeste.sisra.modelo.to.MesaTO;
 import br.unioeste.sisra.utils.Codigo;
 

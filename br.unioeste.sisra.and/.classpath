@@ -6,7 +6,7 @@
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="C:/Users/Charlinho/Documents/NetBeansProjects/Sisra/br.unioeste.sisra"/>
 	<classpathentry kind="lib" path="C:/Users/Charlinho/Documents/NetBeansProjects/Sisra/br.unioeste.sisra/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="libs/br.unioeste.sisra.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

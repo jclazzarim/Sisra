@@ -36,7 +36,7 @@ public class ContaControle {
         conta.setHoraFechamento(new Timestamp(DataUtils.converterStringParaData(to.getHoraFechamento()).getTime()));
         
         
-        conta.setIdMesa(MesaControle.mesaTOAdapter(to.getMesaTO()));
+        conta.setMesa(MesaControle.mesaTOAdapter(to.getMesaTO()));
         return conta;
     }
 

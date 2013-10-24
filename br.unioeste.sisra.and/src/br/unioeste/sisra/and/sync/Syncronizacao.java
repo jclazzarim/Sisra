@@ -6,6 +6,8 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.List;
 
+import br.unioeste.sisra.modelo.listener.IRetornoSyncQuery;
+
 public class Syncronizacao {
 
 	private int porta;

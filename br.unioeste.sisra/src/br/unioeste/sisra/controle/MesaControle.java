@@ -26,17 +26,6 @@ public class MesaControle {
     public MesaControle(IMesaListener listener) {
         this.listener = listener;
     }
-    
-    
-    public static Mesa mesaTOAdapter(MesaTO to){
-        
-        Mesa mesa = new Mesa();
-        mesa.setId(to.getId());
-        //mesa.setStatus(to.Status());
-        mesa.setDescricao(to.getDescricao());
-        mesa.setObs(to.getObs());
-        return mesa;
-    }
 
     public void gravar(Object retorno, boolean novo) throws Exception {
         MesaTO to = (MesaTO) retorno;
@@ -44,8 +33,6 @@ public class MesaControle {
         new MesaValidacao().validar(retorno);
 
         Mesa mesa = mesaTOAdapter(to);
-
-
 
         MesaDao mesaDao = PostgresqlDaoFactory.getDaoFactory().getMesaDao();
         try {
@@ -89,7 +76,7 @@ public class MesaControle {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public MesaTO bucarMesaPorChave(String pk) throws Exception{
+    public MesaTO bucarMesaPorChave(String pk) throws Exception {
         MesaDao dao = PostgresqlDaoFactory.getDaoFactory().getMesaDao();
 
         Mesa[] itens = dao.findWhereCodigoEquals(new FuncionarioValidacao().validaLong(pk));
@@ -100,7 +87,16 @@ public class MesaControle {
         }
     }
 
-    public void excluirMesa(String pk) throws Exception{
+    public static Mesa mesaTOAdapter(MesaTO to) {
+        Mesa mesa = new Mesa();
+        mesa.setId(to.getId());
+        //mesa.setStatus(to.Status());
+        mesa.setDescricao(to.getDescricao());
+        mesa.setObs(to.getObs());
+        return mesa;
+    }
+
+    public void excluirMesa(String pk) throws Exception {
         MesaDao dao = PostgresqlDaoFactory.getDaoFactory().getMesaDao();
         dao.delete(new MesaValidacao().validaLong(pk));
         listener.mesaExcluidaSucesso(pk);

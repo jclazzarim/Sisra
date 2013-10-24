@@ -10,6 +10,8 @@
     <string name="porta">:</string>
     <string name="entrar">Entrar</string>
     <string name="desc_img_logo">Imagem de logo</string>
-    
+    <string name="dialog_conectar_titulo">Conexão com servidor</string>
+    <string name="dialog_conectar_mensagem_sucesso">Conectado com sucesso.</string>
+    <string name="dialog_conectar_mensagem_erro">Erro na conexão. Verifique as informações no formulário.</string>
 
 </resources>
