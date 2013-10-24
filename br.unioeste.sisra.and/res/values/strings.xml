@@ -4,5 +4,12 @@
     <string name="app_name">Sisra</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="usuario">Usuário</string>
+    <string name="senha">Senha</string>
+    <string name="servidor">Servidor:Porta</string>
+    <string name="porta">:</string>
+    <string name="entrar">Entrar</string>
+    <string name="desc_img_logo">Imagem de logo</string>
+    
 
 </resources>

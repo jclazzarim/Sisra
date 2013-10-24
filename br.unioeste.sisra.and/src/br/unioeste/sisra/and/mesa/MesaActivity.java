@@ -1,5 +1,6 @@
 package br.unioeste.sisra.and.mesa;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
@@ -12,7 +13,8 @@ import android.widget.ListView;
 import br.unioeste.sisra.and.R;
 import br.unioeste.sisra.and.sync.Syncronizacao;
 import br.unioeste.sisra.and.sync.SyncronizacaoFactory;
-import br.unioeste.sisra.modelo.listener.IRetornoSyncQuery;
+import br.unioeste.sisra.controle.MesaControle;
+import br.unioeste.sisra.modelo.listener.IMesaListener;
 import br.unioeste.sisra.modelo.to.MesaTO;
 import br.unioeste.sisra.utils.Codigo;
 
@@ -31,8 +33,8 @@ public class MesaActivity extends Activity {
 	private void configurarAcoes() {
 		// Configundo a lista de Mesas
 		ListView lista = (ListView) findViewById(R.id.id_list_mesa_listagem);
-		mesaListagemListViewAdapter = new MesaListViewAdapter(this,
-				lista, android.R.layout.simple_list_item_1);
+		mesaListagemListViewAdapter = new MesaListViewAdapter(this, lista,
+				android.R.layout.simple_list_item_1);
 		lista.setAdapter(mesaListagemListViewAdapter);
 
 		// configurando botao de consulta
@@ -41,7 +43,31 @@ public class MesaActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				new SyncMesaTask().execute("");
+				// new SyncMesaTask().execute("");
+				MesaControle mc = new MesaControle(new IMesaListener() {
+
+					@Override
+					public void mesaExcluidaSucesso(String pk) {
+						// TODO Auto-generated method stub
+
+					}
+
+					@Override
+					public void exibirBusca(MesaTO[] itens) {
+						ArrayList<MesaTO> result = new ArrayList<MesaTO>();
+						for (MesaTO to : itens) {
+							result.add(to);
+							System.out.println(to.toString());
+						}
+						mesaListagemListViewAdapter.atualizarLista(result);
+
+					}
+				});
+				try {
+					mc.buscarMesasPorId("");
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 		});
 	}
@@ -57,15 +83,14 @@ public class MesaActivity extends Activity {
 
 							@Override
 							public void onRetornoConsulta(final List result) {
-								MesaActivity.this
-										.runOnUiThread(new Runnable() {
+								MesaActivity.this.runOnUiThread(new Runnable() {
 
-											@Override
-											public void run() {
-												mesaListagemListViewAdapter
-														.atualizarLista(result);
-											}
-										});
+									@Override
+									public void run() {
+										mesaListagemListViewAdapter
+												.atualizarLista(result);
+									}
+								});
 
 							}
 						});
