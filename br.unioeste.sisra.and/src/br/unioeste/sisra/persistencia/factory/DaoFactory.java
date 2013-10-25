@@ -1,5 +1,6 @@
 package br.unioeste.sisra.persistencia.factory;
 
+import br.unioeste.sisra.persistencia.dao.ContaDao;
 import br.unioeste.sisra.persistencia.dao.FuncionarioDao;
 import br.unioeste.sisra.persistencia.dao.ItemDao;
 import br.unioeste.sisra.persistencia.dao.MesaDao;
@@ -25,6 +26,7 @@ public abstract class DaoFactory {
     public abstract ItemDao getItemDao();
 
     public abstract MesaDao getMesaDao();
+    public abstract ContaDao getContaDao();
     
   
 }

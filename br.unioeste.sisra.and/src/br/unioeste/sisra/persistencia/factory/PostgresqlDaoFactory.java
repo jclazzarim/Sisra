@@ -1,5 +1,6 @@
 package br.unioeste.sisra.persistencia.factory;
 
+import br.unioeste.sisra.persistencia.dao.ContaDao;
 import br.unioeste.sisra.persistencia.dao.FuncionarioDao;
 import br.unioeste.sisra.persistencia.dao.ItemDao;
 import br.unioeste.sisra.persistencia.dao.MesaDao;
@@ -9,6 +10,7 @@ public class PostgresqlDaoFactory extends DaoFactory {
     public FuncionarioDao funcionarioDao;
     public ItemDao itemDao;
     public MesaDao mesaDao;
+    public ContaDao contaDao;
 
     @Override
     public FuncionarioDao getFuncionarioDao() {
@@ -33,4 +35,12 @@ public class PostgresqlDaoFactory extends DaoFactory {
         }
         return mesaDao;
     }
+
+	@Override
+	public ContaDao getContaDao() {
+		if (contaDao == null) {
+			contaDao = new ContaDao();
+        }
+        return contaDao;
+	}
 }

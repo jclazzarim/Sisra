@@ -81,6 +81,11 @@ public class MesaListViewAdapter extends ArrayAdapter<MesaTO> {
 
 		return convertView;
 	}
+	
+	@Override
+	public MesaTO getItem(int position) {
+		return mesas.get(position);
+	}
 
 	@Override
 	public int getCount() {

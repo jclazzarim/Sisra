@@ -10,15 +10,18 @@ public class SyncronizacaoFactory {
 	private static String servidor;
 	private static int porta;
 	public static Syncronizacao create() throws Exception{
-		if(sync == null || sync.isClosed())
+		if(sync == null || sync.isClosed()){
 			sync  = new Syncronizacao(servidor, porta);
+			sync.conectar();
+		}
 		return  sync;
 	}
 	public static void conectar(String servidor, int porta, IRetornoTestarConexao listener) {
 		SyncronizacaoFactory.servidor = servidor;
 		SyncronizacaoFactory.porta = porta;
 		try {
-			new Syncronizacao(servidor, porta);
+			sync = new Syncronizacao(servidor, porta);
+			sync.conectar();
 			listener.onRetornoSucesso();
 		} catch (Exception e) {
 			listener.onRetornoFalha(e.getMessage());
