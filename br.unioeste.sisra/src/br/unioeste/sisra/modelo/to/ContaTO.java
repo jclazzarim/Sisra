@@ -4,29 +4,41 @@
  */
 package br.unioeste.sisra.modelo.to;
 
+import java.io.Serializable;
+import java.util.Date;
+
+import br.unioeste.sisra.utils.DataUtils;
+import java.sql.Timestamp;
+
 /**
  *
  * @author Charlinho
  */
-public class ContaTO {
-    //private List<PedidoTO> pedidos;
+public class ContaTO implements Serializable{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -160081288000099661L;
+	//private List<PedidoTO> pedidos;
 
+	private String descricao;
     private Long id;
-    private String horaAbertura, horaFechamento;
+    private Date horaAbertura, horaFechamento;
     private MesaTO mesa;
     private String total;
 
     public ContaTO() {
 
         this.id = 0l;
-        this.horaAbertura = "";
-        this.horaFechamento = "";
+        this.descricao = "";
+        this.horaAbertura = new Date();
         this.mesa = new MesaTO();
         this.total = "";
     }
 
-    public ContaTO(Long id, String horaAbertura, String horaFechamento, MesaTO mesa, String total) {
+    public ContaTO(Long id, String descricao, Date horaAbertura, Date horaFechamento, MesaTO mesa, String total) {
         this.id = id;
+		this.descricao = descricao;
         this.horaAbertura = horaAbertura;
         this.horaFechamento = horaFechamento;
         this.mesa = mesa;
@@ -41,19 +53,19 @@ public class ContaTO {
         this.id = id;
     }
 
-    public String getHoraAbertura() {
-        return horaAbertura;
+    public String getHoraAberturaString() throws Exception {
+        return  DataUtils.converterDataParaString(horaAbertura);
     }
 
-    public void setHoraAbertura(String horaAbertura) {
+    public void setHoraAbertura(Date horaAbertura) {
         this.horaAbertura = horaAbertura;
     }
 
-    public String getHoraFechamento() {
-        return horaFechamento;
+    public String getHoraFechamentoString() throws Exception {
+    	return  DataUtils.converterDataParaString(horaFechamento);
     }
 
-    public void setHoraFechamento(String horaFechamento) {
+    public void setHoraFechamento(Date horaFechamento) {
         this.horaFechamento = horaFechamento;
     }
 
@@ -71,5 +83,21 @@ public class ContaTO {
 
     public void setTotal(String total) {
         this.total = total;
+    }
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+    public Date getHoraAbertura() {
+        return this.horaAbertura;
+    }
+
+    public Date getHoraFechamento() {
+        return this.horaFechamento;
     }
 }

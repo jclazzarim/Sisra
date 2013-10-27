@@ -80,7 +80,7 @@ public class Conta {
     }
 
     public ContaTO toTO() {
-        return new ContaTO(id, descricao,horaAbertura.toString(), horaFechamento.toString(), mesa.toTO(), String.valueOf(total));
+        return new ContaTO(id, descricao,horaAbertura, horaFechamento, mesa.toTO(), String.valueOf(total));
     }
 
 	public String getDescricao() {

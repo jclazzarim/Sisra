@@ -14,6 +14,6 @@ public interface IContaListener {
 
     public void exibirBusca(ContaTO[] funcionarios);
 
-    public void funcionarioExcluidoSucesso(String pk);
+    public void excluidoSucesso(String pk);
     
 }

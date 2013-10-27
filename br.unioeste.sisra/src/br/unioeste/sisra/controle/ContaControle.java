@@ -10,6 +10,7 @@ import br.unioeste.sisra.modelo.execao.DaoException;
 import br.unioeste.sisra.modelo.execao.ValidacaoException;
 import br.unioeste.sisra.modelo.listener.IContaListener;
 import br.unioeste.sisra.modelo.to.ContaTO;
+import br.unioeste.sisra.modelo.to.MesaTO;
 import br.unioeste.sisra.persistencia.dao.ContaDao;
 import br.unioeste.sisra.persistencia.factory.PostgresqlDaoFactory;
 import br.unioeste.sisra.utils.DataUtils;
@@ -22,38 +23,38 @@ import java.util.logging.Logger;
  * @author Charlinho
  */
 public class ContaControle {
-     private IContaListener listener;
+
+    private IContaListener listener;
 
     public ContaControle(IContaListener listener) {
         this.listener = listener;
 
     }
-    
-    public static Conta contaTOAdapter(ContaTO to) throws Exception{
+
+    public static Conta contaTOAdapter(ContaTO to) throws Exception {
         Conta conta = new Conta();
         conta.setId(to.getId());
-        conta.setHoraAbertura( new Timestamp(DataUtils.converterStringParaData(to.getHoraAbertura()).getTime()));
-        conta.setHoraFechamento(new Timestamp(DataUtils.converterStringParaData(to.getHoraFechamento()).getTime()));
-        
-        
+        conta.setHoraAbertura(new Timestamp(to.getHoraAbertura().getTime()));
+        conta.setHoraFechamento(to.getHoraFechamento() == null ? null:new Timestamp(to.getHoraFechamento().getTime()));
+
         conta.setMesa(MesaControle.mesaTOAdapter(to.getMesaTO()));
         return conta;
     }
 
-    public void gravar(Object retorno, boolean novo) throws Exception {
-        ContaTO to = (ContaTO) retorno;
+    public void gravar(Object obj, boolean novo) throws Exception {
+        ContaTO to = (ContaTO) obj;
         //TODO precisamos criar uma validação de tadas dentro do validate
-      //  new ContaValidacao().validar(retorno);
+        //  new ContaValidacao().validar(retorno);
 
-        Conta funcionario = contaTOAdapter(to);
+        Conta conta = contaTOAdapter(to);
 
         ContaDao funcionarioDao = PostgresqlDaoFactory.getDaoFactory().getContaDao();
         try {
             if (novo) {
-                funcionarioDao.insert(funcionario, funcionario.getId());
+                funcionarioDao.insert(conta, conta.getId());
             } else {
-                funcionarioDao.update(funcionario.getId(), funcionario);
-                
+                funcionarioDao.update(conta.getId(), conta);
+
             }
         } catch (DaoException ex) {
             Logger.getLogger(ContaControle.class.getName()).log(Level.SEVERE, null, ex);
@@ -65,18 +66,17 @@ public class ContaControle {
     // ------------------------------------------------------------------------
     public void buscarContasPorId(String text) throws ValidacaoException, Exception {
 
-
         ContaDao dao = PostgresqlDaoFactory.getDaoFactory().getContaDao();
         try {
             Conta[] funcionarios;
-            
+
             if (text.trim().length() == 0) {
                 funcionarios = dao.findAll();
             } else {
                 Long idConta = new ContaValidacao().validaLong(text);
                 funcionarios = dao.findWhereCodigoEquals(idConta);
             }
-            
+
             for (Conta funcionario : funcionarios) {
                 System.out.println("- " + funcionario.toString());
             }
@@ -86,20 +86,20 @@ public class ContaControle {
         }
     }
 
-    public void buscarContasPorNome(String text) {
+    public void buscarContasPorDescricao(String text) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void buscarContasPorCPF(String text) {
+    public void buscarContasPorMesa(MesaTO mesa) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public ContaTO bucarContaPorChave(String pk) throws Exception {
-        ContaDao funcionarioDao = PostgresqlDaoFactory.getDaoFactory().getContaDao();
+        ContaDao contaDao = PostgresqlDaoFactory.getDaoFactory().getContaDao();
 
-        Conta[] funcionarios = funcionarioDao.findWhereCodigoEquals(new ContaValidacao().validaLong(pk));
-        if (funcionarios.length > 0) {
-            return funcionarios[0].toTO();
+        Conta[] contas = contaDao.findWhereCodigoEquals(new ContaValidacao().validaLong(pk));
+        if (contas.length > 0) {
+            return contas[0].toTO();
         } else {
             return new ContaTO();
         }
@@ -121,6 +121,6 @@ public class ContaControle {
     public void excluirConta(String pk) throws Exception {
         ContaDao funcionarioDao = PostgresqlDaoFactory.getDaoFactory().getContaDao();
         funcionarioDao.delete(new ContaValidacao().validaLong(pk));
-        listener.funcionarioExcluidoSucesso(pk);
+        listener.excluidoSucesso(pk);
     }
 }

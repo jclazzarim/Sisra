@@ -27,8 +27,8 @@ public class MenuPrincipalListViewAdapter extends ArrayAdapter<String> {
 		// Objeto responsável por pegar o Layout do item.
 		mInflater = LayoutInflater.from(activity);
 
-		add("Conta");
 		add("Pedido");
+		add("Conta");
 		add("Mesa");
 		
 		configurarAcoes();

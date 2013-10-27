@@ -26,6 +26,9 @@ import br.unioeste.sisra.modelo.to.MesaTO;
 import br.unioeste.sisra.utils.Codigo;
 
 public class MesaActivity extends Activity {
+	
+	
+	
 	private MesaListViewAdapter mesaListagemListViewAdapter;
 
 	@Override
@@ -101,6 +104,7 @@ public class MesaActivity extends Activity {
 	//-----------------------------------------------------------
 	public void abrirContaListagem(MesaTO mesa) {
 		Intent i = new Intent(MesaActivity.this, ContaListagemActivity.class);
+		i.putExtra(ContaListagemActivity.PARAMETRO_MESA, mesa);
 		startActivity(i);
 	}
 

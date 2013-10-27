@@ -35,8 +35,9 @@ public class ContaDao extends PostgresDao {
     protected static final String SQL_INSERT = ""
             + "INSERT INTO "
             + NAME_ENTITY
-            + "(" + COLUMN_HR_ABERTURA + ", " + COLUMN_HR_FECHAMENTO + ", " + COLUMN_TOTAL + ")"
-            + "    VALUES (?, ?, ?)";
+            + "(" + COLUMN_HR_ABERTURA + ", " + COLUMN_HR_FECHAMENTO + ", " + COLUMN_TOTAL + ""
+            + ", "+COLUMN_ID_MESA+")"
+            + "    VALUES (?, ?, ?, ?)";
     //Atualização
     protected static final String SQL_UPDATE = ""
             + "UPDATE " + NAME_ENTITY + " SET "

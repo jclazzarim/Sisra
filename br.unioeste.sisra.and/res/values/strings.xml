@@ -16,5 +16,9 @@
     <string name="dialog_conectar_mensagem_sucesso">Conectado com sucesso.</string>
     <string name="dialog_conectar_mensagem_erro">Erro na conexão. Verifique as informações no formulário.</string>
     <string name="total_label">Total: R$ </string>
+    <string name="btn_cancelar">Cancelar</string>
+    <string name="btn_salvar">Salvar</string>
+    <string name="label_descricao">Descrição:</string>
+    <string name="txt_adicionar_conta">Adicionar Conta</string>
 
 </resources>

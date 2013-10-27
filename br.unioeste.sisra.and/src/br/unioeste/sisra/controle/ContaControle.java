@@ -32,8 +32,8 @@ public class ContaControle {
     public static Conta contaTOAdapter(ContaTO to) throws Exception{
         Conta conta = new Conta();
         conta.setId(to.getId());
-        conta.setHoraAbertura( new Timestamp(DataUtils.converterStringParaData(to.getHoraAbertura()).getTime()));
-        conta.setHoraFechamento(new Timestamp(DataUtils.converterStringParaData(to.getHoraFechamento()).getTime()));
+     //   conta.setHoraAbertura( new Timestamp(to.getHoraAbertura());
+       // conta.setHoraFechamento(new Timestamp(DataUtils.converterStringParaData(to.getHoraFechamento()).getTime()));
         
         
         conta.setMesa(MesaControle.mesaTOAdapter(to.getMesaTO()));

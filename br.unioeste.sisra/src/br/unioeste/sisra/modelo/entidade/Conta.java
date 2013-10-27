@@ -19,6 +19,7 @@ public class Conta {
     private Timestamp horaAbertura, horaFechamento;
     private Mesa mesa;
     private Double total;
+    private String descricao;
 
     public Conta() {
         this.id = 0l;
@@ -26,6 +27,7 @@ public class Conta {
         this.horaFechamento = new Timestamp(new Date().getTime());;
         this.mesa = new Mesa();
         this.total = 0d;
+        this.descricao = "";
     }
 
     public Conta(Long id, Timestamp horaAbertura, Timestamp horaFechamento, Mesa idMesa, Double total) {
@@ -34,6 +36,7 @@ public class Conta {
         this.horaFechamento = horaFechamento;
         this.mesa = idMesa;
         this.total = total;
+        this.descricao = "";
     }
 
     public Long getId() {
@@ -77,6 +80,14 @@ public class Conta {
     }
 
     public ContaTO toTO() {
-        return new ContaTO(id, horaAbertura.toString(), horaFechamento.toString(), mesa.toTO(), String.valueOf(total));
+        return new ContaTO(id, descricao,horaAbertura, horaFechamento, mesa.toTO(), String.valueOf(total));
     }
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 }

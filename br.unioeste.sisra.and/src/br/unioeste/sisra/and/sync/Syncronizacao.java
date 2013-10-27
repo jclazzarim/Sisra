@@ -3,11 +3,14 @@ package br.unioeste.sisra.and.sync;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.HashMap;
 import java.util.List;
 
 import br.unioeste.sisra.modelo.listener.IRetornoSyncQuery;
+import br.unioeste.sisra.utils.Codigo;
 
 public class Syncronizacao {
 
@@ -20,37 +23,73 @@ public class Syncronizacao {
 		this.endereco = endereco;
 	}
 
-	public void syncQuery(int entidade, int tipoAcessCodigo, String query, IRetornoSyncQuery listener)
-			throws IOException, ClassNotFoundException {
+	public void syncQuery(int entidade, int tipoAcessCodigo,
+			IRetornoSyncQuery listener) throws IOException,
+			ClassNotFoundException {
+		syncQuery(entidade, tipoAcessCodigo, "", listener);
+	}
+
+	public void syncQuery(int entidade, int tipoAcessCodigo, String query,
+			IRetornoSyncQuery listener) throws IOException,
+			ClassNotFoundException {
+		syncQuery(entidade, tipoAcessCodigo, query, null, listener);
+	}
+
+	public void syncQuery(int entidade, int tipoAcessCodigo, String query, Serializable obj,
+			IRetornoSyncQuery listener) throws IOException,
+			ClassNotFoundException {
 		// Cria um stream de saída
-		ObjectOutputStream saidaParaServidor = new ObjectOutputStream(syncSocket.getOutputStream());
-		
+		ObjectOutputStream saidaParaServidor = new ObjectOutputStream(
+				syncSocket.getOutputStream());
+
 		// Cria um buffer que armazenará as informações retornadas pelo servidor
-		ObjectInputStream entradaDoServidor = new ObjectInputStream(syncSocket.getInputStream());
+		ObjectInputStream entradaDoServidor = new ObjectInputStream(
+				syncSocket.getInputStream());
+
+		//Envia uma Hash com os dados
+		
+		HashMap<String, Serializable> params = new HashMap<String, Serializable>();
 		
 		// Consulta
 		// codigo da entidade
-		saidaParaServidor.write(entidade);
+		params.put(Codigo.Parametros.ENTIDADE, entidade);
+		
+		//saidaParaServidor.write(entidade);
 
 		// codigo do tipo de acesso
-		saidaParaServidor.write(tipoAcessCodigo);
-		saidaParaServidor.writeObject(query);
+		params.put(Codigo.Parametros.TIPO_ACESSO, tipoAcessCodigo);
+		params.put(Codigo.Parametros.QUERY, query);
+		//saidaParaServidor.write(tipoAcessCodigo);
+		//saidaParaServidor.writeObject(query);
 		
-		//Retornando a consulta
-		List retorno = (List) entradaDoServidor.readObject();
+		//E objeto
+		params.put(Codigo.Parametros.OBJETO, obj);
+		
+		saidaParaServidor.writeObject(params);
+		
+		// Retornando a consulta
+		switch (tipoAcessCodigo) {
+		case Codigo.TipoAcesso.SEACH:
+			List retorno = (List) entradaDoServidor.readObject();
 
-		listener.onRetornoConsulta(retorno);
+			listener.onRetornoConsulta(retorno);
+			break;
+
+		default:
+			break;
+		}
+		
 		saidaParaServidor.close();
 		entradaDoServidor.close();
 	}
-	
-	public void desconectar() throws Exception{
+
+	public void desconectar() throws Exception {
 		syncSocket.close();
 	}
-	
+
 	// Cria um Socket cliente passando como parâmetro o ip e a porta do
 	// servidor
-	public void conectar() throws Exception{
+	public void conectar() throws Exception {
 		syncSocket = new Socket(endereco, porta);
 	}
 

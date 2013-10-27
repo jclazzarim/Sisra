@@ -27,4 +27,11 @@ public class Codigo {
         public final static int SEACH = 2;
         public final static int DELETE = 3;
     }
+    
+    public class Parametros{
+    	public final static String TIPO_ACESSO = "CODIGO_TIPO_ACESSO";
+    	public final static String QUERY = "QUERY";
+    	public final static String ENTIDADE = "CODIGO_ENTIDADE";
+    	public final static String OBJETO = "OBJETO" ;
+    }
 }
