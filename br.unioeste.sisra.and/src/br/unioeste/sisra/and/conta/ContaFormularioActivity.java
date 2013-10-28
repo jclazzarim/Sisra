@@ -5,6 +5,9 @@ import java.util.Date;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.AlertDialog.Builder;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +15,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
 import br.unioeste.sisra.and.R;
+import br.unioeste.sisra.and.login.LoginActivity;
 import br.unioeste.sisra.and.mesa.MesaActivity;
 import br.unioeste.sisra.and.sync.Syncronizacao;
 import br.unioeste.sisra.and.sync.SyncronizacaoFactory;
@@ -107,10 +111,35 @@ public class ContaFormularioActivity extends Activity {
 
 											@Override
 											public void run() {
-												
+												ContaFormularioActivity.this.finish();
 											}
 										});
 
+							}
+
+							@Override
+							public void onRetornoInsersao() {
+								
+								ContaFormularioActivity.this
+								.runOnUiThread(new Runnable() {
+
+									@Override
+									public void run() {
+										Builder builder = new AlertDialog.Builder(
+												ContaFormularioActivity.this);
+										builder.setTitle("Sisra - Conta")
+												.setIcon(android.R.drawable.ic_dialog_info)
+												.setMessage("Conta inserida com sucesso.");
+										builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+									           public void onClick(DialogInterface dialog, int id) {
+									        	   ContaFormularioActivity.this.finish();
+									           }
+									       });
+										AlertDialog dialog = builder.create();
+										dialog.show();
+									}
+								});
+								
 							}
 						});
 			} catch (Exception e) {

@@ -16,7 +16,7 @@ public class Conta {
     //private List<Pedido> pedidos;
 
     private Long id;
-    private Timestamp horaAbertura, horaFechamento;
+    private Date horaAbertura, horaFechamento;
     private Mesa mesa;
     private Double total;
     private String descricao;
@@ -47,19 +47,19 @@ public class Conta {
         this.id = id;
     }
 
-    public Timestamp getHoraAbertura() {
+    public Date getHoraAbertura() {
         return horaAbertura;
     }
 
-    public void setHoraAbertura(Timestamp horaAbertura) {
+    public void setHoraAbertura(Date horaAbertura) {
         this.horaAbertura = horaAbertura;
     }
 
-    public Timestamp getHoraFechamento() {
+    public Date getHoraFechamento() {
         return horaFechamento;
     }
 
-    public void setHoraFechamento(Timestamp horaFechamento) {
+    public void setHoraFechamento(Date horaFechamento) {
         this.horaFechamento = horaFechamento;
     }
 

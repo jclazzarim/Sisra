@@ -7,7 +7,11 @@ package br.unioeste.sisra.persistencia.dao;
 import br.unioeste.sisra.modelo.entidade.Conta;
 import br.unioeste.sisra.modelo.entidade.Mesa;
 import br.unioeste.sisra.modelo.execao.DaoException;
+import static br.unioeste.sisra.persistencia.dao.PostgresDao.getConnection;
+import static br.unioeste.sisra.persistencia.dao.PostgresDao.log;
+import static br.unioeste.sisra.persistencia.dao.PostgresDao.logger;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,23 +30,25 @@ public class ContaDao extends PostgresDao {
     protected static final String COLUMN_HR_FECHAMENTO = "hr_fechamento";
     protected static final String COLUMN_TOTAL = "total_conta";
     protected static final String COLUMN_ID_MESA = "id_mesa";
+    protected static final String COLUMN_DESCRICAO = "descricao";
+    
     //Consultas
     protected static final String SQL_SELECT = "SELECT " + COLUMN_ID + ", "
-            + COLUMN_HR_ABERTURA + ", " + COLUMN_HR_FECHAMENTO + ", " + COLUMN_TOTAL
+            + COLUMN_HR_ABERTURA + ", " + COLUMN_HR_FECHAMENTO + ", " + COLUMN_TOTAL + ", "+COLUMN_DESCRICAO+" ,"+COLUMN_ID_MESA
             + " FROM " + NAME_ENTITY;
     protected static final String SQL_MAX_ID = "SELECT MAX(" + COLUMN_ID + ") FROM " + NAME_ENTITY;
     //Inserção
     protected static final String SQL_INSERT = ""
             + "INSERT INTO "
             + NAME_ENTITY
-            + "(" + COLUMN_HR_ABERTURA + ", " + COLUMN_HR_FECHAMENTO + ", " + COLUMN_TOTAL + ""
+            + "(" + COLUMN_HR_ABERTURA + ", " + COLUMN_HR_FECHAMENTO + ", " + COLUMN_TOTAL + ", "+COLUMN_DESCRICAO
             + ", "+COLUMN_ID_MESA+")"
-            + "    VALUES (?, ?, ?, ?)";
+            + "    VALUES (?, ?, ?, ?, ?)";
     //Atualização
     protected static final String SQL_UPDATE = ""
             + "UPDATE " + NAME_ENTITY + " SET "
             + COLUMN_HR_ABERTURA + " = ?, " + COLUMN_HR_FECHAMENTO + " = ?"
-            + COLUMN_TOTAL + " = ?, " + "WHERE " + COLUMN_ID + " = ?";
+            + COLUMN_TOTAL + " = ?, "+COLUMN_DESCRICAO+ " = ?, "+COLUMN_ID_MESA+" = ? " + "WHERE " + COLUMN_ID + " = ?";
     //Remoção
     protected static final String SQL_DELETE = "DELETE FROM " + NAME_ENTITY + " WHERE " + COLUMN_ID + " = ?";
 
@@ -63,9 +69,10 @@ public class ContaDao extends PostgresDao {
             con.setAutoCommit(false);
             ps = con.prepareStatement(sql);
             int paramCount = 1;
-            ps.setTimestamp(paramCount++, conta.getHoraAbertura());
-            ps.setTimestamp(paramCount++, conta.getHoraFechamento());
+            ps.setDate(paramCount++, conta.getHoraAbertura() == null? null : new Date(conta.getHoraAbertura().getTime()));
+            ps.setDate(paramCount++, conta.getHoraFechamento()== null? null : new Date(conta.getHoraFechamento().getTime()));
             ps.setDouble(paramCount++, conta.getTotal());
+            ps.setString(paramCount++, conta.getDescricao());
             ps.setLong(paramCount++, conta.getMesa().getId());
 
             ps.executeUpdate();
@@ -111,9 +118,10 @@ public class ContaDao extends PostgresDao {
             ps = con.prepareStatement(sql);
 
             //paremetros
-            ps.setTimestamp(paramCount++, conta.getHoraAbertura());
-            ps.setTimestamp(paramCount++, conta.getHoraFechamento());
+            ps.setDate(paramCount++, conta.getHoraAbertura() == null? null : new Date(conta.getHoraAbertura().getTime()));
+            ps.setDate(paramCount++, conta.getHoraFechamento()== null? null : new Date(conta.getHoraFechamento().getTime()));
             ps.setDouble(paramCount++, conta.getTotal());
+            ps.setString(paramCount++, conta.getDescricao());
             ps.setLong(paramCount++, conta.getMesa().getId());
 
             //Setando id a ser atualizado
@@ -265,9 +273,10 @@ public class ContaDao extends PostgresDao {
     //--------------------------------------------------------------------------
     public void populateDto(Conta conta, ResultSet rs) throws Exception {
         conta.setId(rs.getLong(COLUMN_ID));
-        conta.setHoraAbertura(rs.getTimestamp(COLUMN_HR_ABERTURA));
-        conta.setHoraFechamento(rs.getTimestamp(COLUMN_HR_FECHAMENTO));
+        conta.setHoraAbertura(rs.getDate(COLUMN_HR_ABERTURA));
+        conta.setHoraFechamento(rs.getDate(COLUMN_HR_FECHAMENTO));
         conta.setTotal(rs.getDouble(COLUMN_TOTAL));
+        conta.setDescricao(rs.getString(COLUMN_DESCRICAO));
 
         long idMesa = rs.getLong(COLUMN_ID_MESA);
         MesaDao mesaDao = new MesaDao();
@@ -280,12 +289,54 @@ public class ContaDao extends PostgresDao {
     public Conta[] fetchMultipleResults(ResultSet rs) throws Exception {
         ArrayList results = new ArrayList();
         while (rs.next()) {
-            Conta mesa = new Conta();
-            populateDto(mesa, rs);
-            results.add(mesa);
+            Conta entidade = new Conta();
+            populateDto(entidade, rs);
+            results.add(entidade);
         }
         Conta retValue[] = new Conta[results.size()];
         results.toArray(retValue);
         return retValue;
+    }
+
+    public Conta[] findWhereIdMesa(Long idMesa, boolean abertas) throws DaoException {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            String sql = SQL_SELECT + " WHERE "+COLUMN_ID_MESA+" = "+idMesa+" AND "+COLUMN_HR_FECHAMENTO+" IS NULL";
+            sql += getOrderByClause();
+            if (limit != null && limit.intValue() > 0) {
+                sql += " LIMIT " + limit;
+            }
+            if (offset != null && offset.intValue() > 0) {
+                sql += " OFFSET " + offset;
+            }
+            con = getConnection();
+            ps = con.prepareStatement(sql);
+            //ps.setLong(1, pk);
+            log.trace("SQL: " + sql);
+            rs = ps.executeQuery();
+            return fetchMultipleResults(rs);
+        } catch (SQLException e) {
+            logger.error("SQLException: " + e.getMessage(), e);
+            throw new DaoException("SQLException: " + e.getMessage(), e);
+        } catch (Exception e) {
+            logger.error("Exception: " + e.getMessage(), e);
+            throw new DaoException("Exception: " + e.getMessage(), e);
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception e) {
+            }
+        }
     }
 }

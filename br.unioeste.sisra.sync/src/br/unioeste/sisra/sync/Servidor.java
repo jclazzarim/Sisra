@@ -51,7 +51,7 @@ public class Servidor {
                 System.out.println("Cliente conectado.");
                 // Cria uma buffer que irá armazenar as informações enviadas pelo cliente
                 ObjectInputStream entradaDados = new ObjectInputStream(conexao.getInputStream());
-            //new BufferedReader(new InputStreamReader(conexao.getInputStream()));
+                //new BufferedReader(new InputStreamReader(conexao.getInputStream()));
 
                 // Cria uma stream de sáida para retorno das informações ao cliente
                 ObjectOutputStream saidaDados = new ObjectOutputStream(conexao.getOutputStream());
@@ -225,7 +225,15 @@ public class Servidor {
 
             switch (tipoAcessCodigo) {
                 case Codigo.TipoAcesso.SEACH:
-                    controle.buscarContasPorId("");
+                    if (query.equals(ContaControle.Query.POR_MESA_E_EM_ABERTO)) {
+
+                        if (obj != null && obj instanceof MesaTO) {
+                            MesaTO mesa = (MesaTO) obj;
+                            controle.buscarContasPorMesa(mesa, true);
+                        }
+                    } else {
+                        controle.buscarContasPorId("");
+                    }
                     break;
                 case Codigo.TipoAcesso.INSERT:
                     if (obj != null && obj instanceof ContaTO) {

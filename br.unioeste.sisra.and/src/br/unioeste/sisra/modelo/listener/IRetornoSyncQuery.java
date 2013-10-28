@@ -4,4 +4,6 @@ import java.util.List;
 
 public interface IRetornoSyncQuery {
 	public void onRetornoConsulta(List result);
+	
+	public void onRetornoInsersao();
 }

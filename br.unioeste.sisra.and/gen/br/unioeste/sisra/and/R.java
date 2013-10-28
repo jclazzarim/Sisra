@@ -27,13 +27,15 @@ public final class R {
         public static final int ic_btn_cancel=0x7f020003;
         public static final int ic_btn_salvar=0x7f020004;
         public static final int ic_conta_adicionar=0x7f020005;
-        public static final int ic_launcher=0x7f020006;
-        public static final int ic_list_available=0x7f020007;
-        public static final int ic_list_conta=0x7f020008;
-        public static final int ic_list_mesa=0x7f020009;
-        public static final int ic_list_not_available=0x7f02000a;
-        public static final int ic_list_pedido=0x7f02000b;
-        public static final int logo_sistema_temp=0x7f02000c;
+        public static final int ic_itens=0x7f020006;
+        public static final int ic_launcher=0x7f020007;
+        public static final int ic_list_available=0x7f020008;
+        public static final int ic_list_conta=0x7f020009;
+        public static final int ic_list_mesa=0x7f02000a;
+        public static final int ic_list_not_available=0x7f02000b;
+        public static final int ic_list_pedido=0x7f02000c;
+        public static final int ic_pedido_itens=0x7f02000d;
+        public static final int logo_sistema_temp=0x7f02000e;
     }
     public static final class id {
         public static final int action_settings=0x7f080019;
@@ -69,9 +71,14 @@ public final class R {
         public static final int activity_conta_listagem=0x7f030002;
         public static final int activity_main=0x7f030003;
         public static final int activity_mesa=0x7f030004;
-        public static final int list_conta_listagem_item=0x7f030005;
-        public static final int list_mesa_item=0x7f030006;
-        public static final int list_principal_item=0x7f030007;
+        public static final int activity_tab_itens=0x7f030005;
+        public static final int activity_tab_layout=0x7f030006;
+        public static final int activity_tab_pedido_itens=0x7f030007;
+        public static final int icon_tab_itens=0x7f030008;
+        public static final int icon_tab_pedido_itens=0x7f030009;
+        public static final int list_conta_listagem_item=0x7f03000a;
+        public static final int list_mesa_item=0x7f03000b;
+        public static final int list_principal_item=0x7f03000c;
     }
     public static final class menu {
         public static final int main=0x7f070000;

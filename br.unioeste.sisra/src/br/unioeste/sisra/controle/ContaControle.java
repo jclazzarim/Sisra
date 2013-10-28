@@ -24,6 +24,10 @@ import java.util.logging.Logger;
  */
 public class ContaControle {
 
+    public class Query {
+
+        public final static String POR_MESA_E_EM_ABERTO = "POR_MESA_E_EM_ABERTO";
+    }
     private IContaListener listener;
 
     public ContaControle(IContaListener listener) {
@@ -34,8 +38,9 @@ public class ContaControle {
     public static Conta contaTOAdapter(ContaTO to) throws Exception {
         Conta conta = new Conta();
         conta.setId(to.getId());
+        conta.setDescricao(to.getDescricao());
         conta.setHoraAbertura(new Timestamp(to.getHoraAbertura().getTime()));
-        conta.setHoraFechamento(to.getHoraFechamento() == null ? null:new Timestamp(to.getHoraFechamento().getTime()));
+        conta.setHoraFechamento(to.getHoraFechamento() == null ? null : new Timestamp(to.getHoraFechamento().getTime()));
 
         conta.setMesa(MesaControle.mesaTOAdapter(to.getMesaTO()));
         return conta;
@@ -68,19 +73,19 @@ public class ContaControle {
 
         ContaDao dao = PostgresqlDaoFactory.getDaoFactory().getContaDao();
         try {
-            Conta[] funcionarios;
+            Conta[] contas;
 
             if (text.trim().length() == 0) {
-                funcionarios = dao.findAll();
+                contas = dao.findAll();
             } else {
                 Long idConta = new ContaValidacao().validaLong(text);
-                funcionarios = dao.findWhereCodigoEquals(idConta);
+                contas = dao.findWhereCodigoEquals(idConta);
             }
 
-            for (Conta funcionario : funcionarios) {
+            for (Conta funcionario : contas) {
                 System.out.println("- " + funcionario.toString());
             }
-            listener.exibirBusca(converterEntidadesEmTO(funcionarios));
+            listener.exibirBusca(converterEntidadesEmTO(contas));
         } catch (DaoException ex) {
             throw new Exception(ex);
         }
@@ -90,8 +95,18 @@ public class ContaControle {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void buscarContasPorMesa(MesaTO mesa) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void buscarContasPorMesa(MesaTO mesa, boolean abertas) throws ValidacaoException, Exception {
+        Long idMesa = mesa.getId();
+
+        ContaDao dao = PostgresqlDaoFactory.getDaoFactory().getContaDao();
+
+        Conta[] contas = dao.findWhereIdMesa(idMesa, abertas);
+
+        for (Conta funcionario : contas) {
+            System.out.println("- " + funcionario.toString());
+        }
+        listener.exibirBusca(converterEntidadesEmTO(contas));
+
     }
 
     public ContaTO bucarContaPorChave(String pk) throws Exception {

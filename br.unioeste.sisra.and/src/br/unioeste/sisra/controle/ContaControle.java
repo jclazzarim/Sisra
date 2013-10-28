@@ -22,6 +22,10 @@ import java.util.logging.Logger;
  * @author Charlinho
  */
 public class ContaControle {
+	public class Query{
+		public final static String POR_MESA_E_EM_ABERTO = "POR_MESA_E_EM_ABERTO";
+	}
+	
      private IContaListener listener;
 
     public ContaControle(IContaListener listener) {

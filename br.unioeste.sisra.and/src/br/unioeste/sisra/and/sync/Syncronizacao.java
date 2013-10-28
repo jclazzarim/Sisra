@@ -74,6 +74,10 @@ public class Syncronizacao {
 
 			listener.onRetornoConsulta(retorno);
 			break;
+			
+		case Codigo.TipoAcesso.INSERT:
+			listener.onRetornoInsersao();
+			break;
 
 		default:
 			break;

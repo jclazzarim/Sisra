@@ -37,6 +37,15 @@
          <activity
             android:name="br.unioeste.sisra.and.conta.ContaFormularioActivity"
             android:label="@string/titulo_conta" />
+         
+         <!-- TABS -->
+         <activity
+            android:name="br.unioeste.sisra.and.pedido.PedidoTabLayoutActivity" />
+         <activity
+            android:name="br.unioeste.sisra.and.pedido.ItensActivity" />
+         <activity
+            android:name="br.unioeste.sisra.and.pedido.PedidoItensActivity" />
+         
     </application>
 
 </manifest>
