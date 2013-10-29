@@ -213,7 +213,7 @@ public class ItemListagem extends javax.swing.JPanel {
         String[] linha = new String[5];
         linha[ItemActivity.Campo.ID] = i.getId() == null ? "" : String.valueOf(i.getId());
         linha[ItemActivity.Campo.NOME] = i.getNome();
-        linha[ItemActivity.Campo.CODIGO] = i.getNome();
+        linha[ItemActivity.Campo.CODIGO] = i.getCodigo();
         linha[ItemActivity.Campo.PRECO] = i.getPreco();
         linha[ItemActivity.Campo.DESCRICAO] = i.getDescricao();
         return linha;

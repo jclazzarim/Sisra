@@ -4,6 +4,7 @@
  */
 package br.unioeste.sisra.persistencia.dao;
 
+import br.unioeste.sisra.modelo.entidade.Conta;
 import br.unioeste.sisra.modelo.entidade.Mesa;
 import br.unioeste.sisra.modelo.execao.DaoException;
 import java.sql.Connection;
@@ -11,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -37,8 +39,8 @@ public class MesaDao extends PostgresDao{
     //Atualização
     protected static final String SQL_UPDATE = ""
             + "UPDATE " + NAME_ENTITY + " SET " 
-            + COLUMN_DESCRICAO + " = ?, " + COLUMN_STATUS + " = ?"
-            + COLUMN_OBSERVACAO + " = ?, " + "WHERE " + COLUMN_ID + " = ?";
+            + COLUMN_DESCRICAO + " = ?, " + COLUMN_STATUS + " = ?, "
+            + COLUMN_OBSERVACAO + " = ? " + "WHERE " + COLUMN_ID + " = ?";
     //Remoção
     protected static final String SQL_DELETE = "DELETE FROM " + NAME_ENTITY + " WHERE " + COLUMN_ID + " = ?";
 
@@ -275,5 +277,7 @@ public class MesaDao extends PostgresDao{
         results.toArray(retValue);
         return retValue;
     }
+
+    
     
 }

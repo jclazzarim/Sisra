@@ -15,7 +15,7 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ListView;
 import br.unioeste.sisra.and.R;
-import br.unioeste.sisra.and.pedido.PedidoTabLayoutActivity;
+import br.unioeste.sisra.and.pedido.item.PedidoTabLayoutActivity;
 import br.unioeste.sisra.and.sync.Syncronizacao;
 import br.unioeste.sisra.and.sync.SyncronizacaoFactory;
 import br.unioeste.sisra.controle.ContaControle;

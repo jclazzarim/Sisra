@@ -6,13 +6,16 @@ package br.unioeste.sisra.sync;
 
 import br.unioeste.sisra.controle.ContaControle;
 import br.unioeste.sisra.controle.FuncionarioControle;
+import br.unioeste.sisra.controle.ItemControle;
 import br.unioeste.sisra.controle.MesaControle;
 import br.unioeste.sisra.modelo.execao.ValidacaoException;
 import br.unioeste.sisra.modelo.listener.IContaListener;
 import br.unioeste.sisra.modelo.listener.IFuncionarioListener;
+import br.unioeste.sisra.modelo.listener.IItemListener;
 import br.unioeste.sisra.modelo.listener.IMesaListener;
 import br.unioeste.sisra.modelo.to.ContaTO;
 import br.unioeste.sisra.modelo.to.FuncionarioTO;
+import br.unioeste.sisra.modelo.to.ItemTO;
 import br.unioeste.sisra.modelo.to.MesaTO;
 import br.unioeste.sisra.utils.Codigo;
 import java.io.IOException;
@@ -78,6 +81,9 @@ public class Servidor {
                         break;
                     case Codigo.Entidade.CONTA:
                         entradaDadosConta(entradaDados, saidaDados, tipoAcessCodigo, query, obj);
+                        break;
+                    case Codigo.Entidade.ITEM:
+                            entradaDadosItem(entradaDados, saidaDados, tipoAcessCodigo, query, obj);
                         break;
                     default:
                         System.err.println("Codigo de entidade : \"" + entidadeCodigo + "\" não configurado.");
@@ -249,6 +255,45 @@ public class Servidor {
                     break;
                 case Codigo.TipoAcesso.DELETE:
 
+                    break;
+                default:
+                    System.err.println("Codigo de tipo de acesso : \"" + tipoAcessCodigo + "\" não configurado.");
+                    break;
+            }
+
+        } catch (ValidacaoException ex) {
+            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }
+    
+    private void entradaDadosItem(ObjectInputStream entradaDados, final ObjectOutputStream saidaDados, int tipoAcessCodigo, String query, Serializable obj) {
+        try {
+            ItemControle controle = new ItemControle(new IItemListener() {
+                @Override
+                public void exibirBusca(ItemTO[] itens) {
+                    try {
+                        ArrayList<ItemTO> result = new ArrayList<>();
+                        for (ItemTO to : itens) {
+                            result.add(to);
+                            System.out.println(to.toString());
+                        }
+                        saidaDados.writeObject(result);
+                    } catch (IOException ex) {
+                        Logger.getLogger(Servidor.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+
+                @Override
+                public void itemExcluidoSucesso(String pk) {
+                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+                }
+            });
+
+            switch (tipoAcessCodigo) {
+                case Codigo.TipoAcesso.SEACH:
+                        controle.buscarItemsPorId("");
                     break;
                 default:
                     System.err.println("Codigo de tipo de acesso : \"" + tipoAcessCodigo + "\" não configurado.");

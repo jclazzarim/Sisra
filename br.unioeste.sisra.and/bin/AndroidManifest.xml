@@ -40,11 +40,11 @@
          
          <!-- TABS -->
          <activity
-            android:name="br.unioeste.sisra.and.pedido.PedidoTabLayoutActivity" />
+            android:name="br.unioeste.sisra.and.pedido.item.PedidoTabLayoutActivity" />
          <activity
-            android:name="br.unioeste.sisra.and.pedido.ItensActivity" />
+            android:name="br.unioeste.sisra.and.pedido.item.ItensActivity" />
          <activity
-            android:name="br.unioeste.sisra.and.pedido.PedidoItensActivity" />
+            android:name="br.unioeste.sisra.and.pedido.item.PedidoItensActivity" />
          
     </application>
 

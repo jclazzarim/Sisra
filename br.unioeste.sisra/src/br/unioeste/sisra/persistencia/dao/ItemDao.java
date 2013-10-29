@@ -108,6 +108,7 @@ public class ItemDao extends PostgresDao{
             ps = con.prepareStatement(sql);
 
             //paremetros
+            ps.setString(paramCount++,item.getCodigo());
             ps.setString(paramCount++, item.getNome());
             ps.setString(paramCount++, item.getDescricao());
             ps.setDouble(paramCount++, item.getPreco());

@@ -12,6 +12,7 @@ import br.unioeste.sisra.modelo.listener.IContaListener;
 import br.unioeste.sisra.modelo.to.ContaTO;
 import br.unioeste.sisra.modelo.to.MesaTO;
 import br.unioeste.sisra.persistencia.dao.ContaDao;
+import br.unioeste.sisra.persistencia.dao.MesaDao;
 import br.unioeste.sisra.persistencia.factory.PostgresqlDaoFactory;
 import br.unioeste.sisra.utils.DataUtils;
 import java.sql.Timestamp;
@@ -53,17 +54,20 @@ public class ContaControle {
 
         Conta conta = contaTOAdapter(to);
 
-        ContaDao funcionarioDao = PostgresqlDaoFactory.getDaoFactory().getContaDao();
+        ContaDao contaDao = PostgresqlDaoFactory.getDaoFactory().getContaDao();
         try {
             if (novo) {
-                funcionarioDao.insert(conta, conta.getId());
+                contaDao.insert(conta, conta.getId());
             } else {
-                funcionarioDao.update(conta.getId(), conta);
-
-            }
+                contaDao.update(conta.getId(), conta);
+            }            
         } catch (DaoException ex) {
             Logger.getLogger(ContaControle.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        //Atualiza se a mesa está ou não ocupada
+        MesaControle mesaControle = new MesaControle(null);
+        mesaControle.atualizarMesaOcupada(to.getMesaTO());
     }
 
     // ------------------------------------------------------------------------

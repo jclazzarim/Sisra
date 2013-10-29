@@ -4,12 +4,15 @@
  */
 package br.unioeste.sisra.modelo.to;
 
+import java.io.Serializable;
+
 /**
  *
  * @author JCLazzarim
  */
-public class ItemTO {
-    private String nome;
+public class ItemTO implements Serializable{
+	private static final long serialVersionUID = 2044508644846461059L;
+	private String nome;
     private String descricao;
     private String preco;
     private Long id;

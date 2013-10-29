@@ -4,6 +4,7 @@
  */
 package br.unioeste.sisra.modelo.to;
 
+import br.unioeste.sisra.modelo.entidade.Mesa;
 import java.io.Serializable;
 
 /**
@@ -93,4 +94,8 @@ public class MesaTO implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+    public boolean getStatusBoolean() {
+        return status.equals(STATUS_LIVRE)? Mesa.STATUS_LIVRE: Mesa.STATUS_OCUPADO;
+    }
 }
