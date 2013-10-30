@@ -4,6 +4,8 @@ import br.unioeste.sisra.persistencia.dao.ContaDao;
 import br.unioeste.sisra.persistencia.dao.FuncionarioDao;
 import br.unioeste.sisra.persistencia.dao.ItemDao;
 import br.unioeste.sisra.persistencia.dao.MesaDao;
+import br.unioeste.sisra.persistencia.dao.PedidoDao;
+import br.unioeste.sisra.persistencia.dao.PedidoItemDao;
 
 
 public abstract class DaoFactory {
@@ -29,6 +31,9 @@ public abstract class DaoFactory {
     
     public abstract ContaDao getContaDao();
     
+    public abstract PedidoDao getPedidoDao();
+    
+    public abstract PedidoItemDao getPedidoItemDao();
   
 }
 

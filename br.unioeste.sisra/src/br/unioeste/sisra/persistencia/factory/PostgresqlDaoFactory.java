@@ -4,6 +4,8 @@ import br.unioeste.sisra.persistencia.dao.ContaDao;
 import br.unioeste.sisra.persistencia.dao.FuncionarioDao;
 import br.unioeste.sisra.persistencia.dao.ItemDao;
 import br.unioeste.sisra.persistencia.dao.MesaDao;
+import br.unioeste.sisra.persistencia.dao.PedidoDao;
+import br.unioeste.sisra.persistencia.dao.PedidoItemDao;
 
 public class PostgresqlDaoFactory extends DaoFactory {
 
@@ -11,6 +13,8 @@ public class PostgresqlDaoFactory extends DaoFactory {
     public ItemDao itemDao;
     public MesaDao mesaDao;
     public ContaDao contaDao;
+    public PedidoDao pedidoDao;
+    public PedidoItemDao pedidoItemDao;
 
     @Override
     public FuncionarioDao getFuncionarioDao() {
@@ -42,5 +46,21 @@ public class PostgresqlDaoFactory extends DaoFactory {
             contaDao = new ContaDao();
         }
         return contaDao;
+    }
+
+    @Override
+    public PedidoDao getPedidoDao() {
+         if(pedidoDao == null){
+            pedidoDao = new PedidoDao();
+        }
+        return pedidoDao;
+    }
+
+    @Override
+    public PedidoItemDao getPedidoItemDao() {
+         if(pedidoItemDao == null){
+            pedidoItemDao = new PedidoItemDao();
+        }
+        return pedidoItemDao;
     }
 }
