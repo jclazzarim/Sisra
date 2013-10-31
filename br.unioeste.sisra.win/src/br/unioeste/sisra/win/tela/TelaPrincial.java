@@ -4,6 +4,7 @@
  */
 package br.unioeste.sisra.win.tela;
 
+import br.unioeste.sisra.win.tela.fecharConta.FecharContaActivity;
 import br.unioeste.sisra.win.tela.funcionario.FuncionarioActivity;
 import br.unioeste.sisra.win.tela.item.ItemActivity;
 import br.unioeste.sisra.win.tela.mesa.MesaActivity;
@@ -18,12 +19,14 @@ public class TelaPrincial extends javax.swing.JFrame {
     FuncionarioActivity funcionarioActivity;
     ItemActivity itemActivity;
     MesaActivity mesaActivity;
+    FecharContaActivity contaActivity;
 
     class Tela {
 
         static final String FUNCIONARIO = "funcionario";
         static final String ITEM = "item";
         static final String MESA = "mesa";
+        static final String CONTA = "conta";
     }
     CardLayout cl;
 
@@ -37,6 +40,7 @@ public class TelaPrincial extends javax.swing.JFrame {
         this.funcionarioActivity = new FuncionarioActivity(this);
         this.itemActivity = new ItemActivity(this);
         this.mesaActivity = new MesaActivity(this);
+        this.contaActivity = new FecharContaActivity(this);
         this.cl = new CardLayout();
         this.jpPrincipal.setLayout(cl);
         setLocationRelativeTo(null);
@@ -216,7 +220,9 @@ public class TelaPrincial extends javax.swing.JFrame {
     }//GEN-LAST:event_btMesaActionPerformed
 
     private void btContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btContaActionPerformed
-        // TODO add your handling code here:
+        jpPrincipal.removeAll();
+        jpPrincipal.add(contaActivity.getTela(), Tela.CONTA);
+        jpPrincipal.revalidate();
     }//GEN-LAST:event_btContaActionPerformed
     /**
      * @param args the command line arguments
