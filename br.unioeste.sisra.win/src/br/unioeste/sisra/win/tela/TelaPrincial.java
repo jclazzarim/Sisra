@@ -8,6 +8,7 @@ import br.unioeste.sisra.win.tela.fecharConta.FecharContaActivity;
 import br.unioeste.sisra.win.tela.funcionario.FuncionarioActivity;
 import br.unioeste.sisra.win.tela.item.ItemActivity;
 import br.unioeste.sisra.win.tela.mesa.MesaActivity;
+import br.unioeste.sisra.win.tela.pedidos.PedidosActivity;
 import java.awt.CardLayout;
 
 /**
@@ -20,6 +21,7 @@ public class TelaPrincial extends javax.swing.JFrame {
     ItemActivity itemActivity;
     MesaActivity mesaActivity;
     FecharContaActivity contaActivity;
+    PedidosActivity pedidoActivity;
 
     class Tela {
 
@@ -27,6 +29,7 @@ public class TelaPrincial extends javax.swing.JFrame {
         static final String ITEM = "item";
         static final String MESA = "mesa";
         static final String CONTA = "conta";
+        static final String PEDIDO = "pedido";
     }
     CardLayout cl;
 
@@ -41,6 +44,7 @@ public class TelaPrincial extends javax.swing.JFrame {
         this.itemActivity = new ItemActivity(this);
         this.mesaActivity = new MesaActivity(this);
         this.contaActivity = new FecharContaActivity(this);
+        this.pedidoActivity = new PedidosActivity(this);
         this.cl = new CardLayout();
         this.jpPrincipal.setLayout(cl);
         setLocationRelativeTo(null);
@@ -130,6 +134,11 @@ public class TelaPrincial extends javax.swing.JFrame {
         jButton2.setFocusable(false);
         jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jToolBar1.add(jButton2);
 
         btConta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/unioeste/sisra/win/recursos/imagem/conta_48x48.png"))); // NOI18N
@@ -224,6 +233,13 @@ public class TelaPrincial extends javax.swing.JFrame {
         jpPrincipal.add(contaActivity.getTela(), Tela.CONTA);
         jpPrincipal.revalidate();
     }//GEN-LAST:event_btContaActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        jpPrincipal.removeAll();
+        jpPrincipal.add(pedidoActivity.getTela(), Tela.PEDIDO);
+        jpPrincipal.revalidate();
+        pedidoActivity.buscarPedido();
+    }//GEN-LAST:event_jButton2ActionPerformed
     /**
      * @param args the command line arguments
      */

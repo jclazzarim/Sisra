@@ -6,12 +6,16 @@ package br.unioeste.sisra.win.tela.fecharConta;
 
 import br.sinforoso.modelo.listener.OnDialogResult;
 import br.unioeste.sisra.controle.ContaControle;
+import br.unioeste.sisra.modelo.execao.DaoException;
+import br.unioeste.sisra.modelo.execao.ValidacaoException;
 import br.unioeste.sisra.modelo.listener.IContaListener;
 import br.unioeste.sisra.modelo.to.ContaTO;
 import br.unioeste.sisra.win.componente.Handler;
 import br.unioeste.sisra.win.listener.OnFormularioResult;
 import br.unioeste.sisra.win.tela.TelaPrincial;
 import java.awt.Component;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -74,27 +78,34 @@ public class FecharContaActivity implements IContaListener{
         fd.setVisible(true);
     }
 
-    void buscarConta(String text, int campo) {
-        switch (campo) {
-            case FecharContaActivity.Campo.ID:
-                try {
-                    controlador.bucarContaPorChave(text);
-                } catch (Exception ex) {
-                    handler.handle(ex);
-                }
-                break;
-            case FecharContaActivity.Campo.DESCRICAO:
-                controlador.buscarContasPorDescricao(text);
-                break;
+    void buscarConta() {
+        try {
+            controlador.buscarContasAbertas();
+        } catch (DaoException ex) {
+            Logger.getLogger(FecharContaActivity.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(FecharContaActivity.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
+    void fecharConta(String pk){
+        try {
+            controlador.fecharConta(pk);
+        } catch (DaoException ex) {
+            Logger.getLogger(FecharContaActivity.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ValidacaoException ex) {
+            Logger.getLogger(FecharContaActivity.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(FecharContaActivity.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     void editarConta(String pk) throws Exception {
         ContaTO f = controlador.bucarContaPorChave(pk);
         abrirFormularioConta(f);
     }
 
-    void excluirFuncionario(String pk, String nome) throws Exception {
+    void excluirConta(String pk, String nome) throws Exception {
         int showConfirmDialog = JOptionPane.showConfirmDialog(pai, "Tem certeza que deseja excluir \"" + nome + "\"?", "Excluir", JOptionPane.YES_NO_OPTION);
         if (showConfirmDialog == JOptionPane.YES_OPTION) {
             controlador.excluirConta(pk);

@@ -23,8 +23,7 @@ import java.util.logging.Logger;
 public class PedidoControle {
 
     public class Query {
-
-     //   public final static String POR_MESA_E_EM_ABERTO = "POR_MESA_E_EM_ABERTO";
+        //   public final static String POR_MESA_E_EM_ABERTO = "POR_MESA_E_EM_ABERTO";
     }
     private IPedidoListener listener;
 
@@ -34,7 +33,7 @@ public class PedidoControle {
     }
 
     public static Pedido pedidoTOAdapter(PedidoTO to) throws Exception {
-        
+
         Pedido pedido = new Pedido();
         pedido.setIdPedido(to.getIdPedido());
         pedido.setAtendido(to.isAtendido());
@@ -57,14 +56,29 @@ public class PedidoControle {
                 pedidoDao.insert(pedido, pedido.getIdPedido());
             } else {
                 pedidoDao.update(pedido.getIdPedido(), pedido);
-            }            
+            }
         } catch (DaoException ex) {
             Logger.getLogger(PedidoControle.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         //Atualiza se a mesa está ou não ocupada
 //        MesaControle mesaControle = new MesaControle(null);
 //        mesaControle.atualizarMesaOcupada(to.getMesaTO());
+    }
+
+    public void finalizar(String pk) throws ValidacaoException, DaoException, Exception {
+        PedidoDao dao = PostgresqlDaoFactory.getDaoFactory().getPedidoDao();
+        Pedido[] pedidos;
+        
+        Long idPedido = new PedidoValidacao().validaLong(pk);
+        pedidos = dao.findWhereCodigoEquals(idPedido);
+        
+        Pedido pedido = pedidos[0];
+        
+        pedido.setAtendido(true);
+        PedidoTO pedidoTO = pedido.toTo();
+        
+        gravar(pedidoTO, false);
     }
 
     // ------------------------------------------------------------------------
@@ -89,6 +103,12 @@ public class PedidoControle {
         }
     }
 
+    public void buscarPedidosPorAberto() throws DaoException, Exception{
+        PedidoDao dao = PostgresqlDaoFactory.getDaoFactory().getPedidoDao();
+        Pedido[] findAbertos = dao.findAbertos();
+        listener.exibirBusca(converterEntidadesEmTO(findAbertos));
+    }
+    
     public void buscarPedidosPorDescricao(String text) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

@@ -1,6 +1,12 @@
+.gitignore
+*.class
+*.DS_Store
+*.classpath
+*.project
+.metadata*
+.settings*
 /br.unioeste.sisra.win - Copia/build/
 /br.unioeste.sisra.win - Copia/dist/
 /br.unioeste.sisra.win - Copia/nbproject/private/
 /br.unioeste.sisra/dist/
-*.class
 /br.unioeste.sisra.win/dist/

@@ -214,6 +214,48 @@ public class PedidoDao extends PostgresDao {
             }
         }
     }
+    
+    public Pedido[] findAbertos() throws DaoException {
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+
+        try {
+            String sql = SQL_SELECT + " WHERE " + COLUMN_ATENDIDO + " = ?";
+            sql += getOrderByClause();
+            if (limit != null && limit.intValue() > 0) {
+                sql += " LIMIT " + limit;
+            }
+            if (offset != null && offset.intValue() > 0) {
+                sql += "offset " + offset;
+            }
+            con = getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setBoolean(1, false);
+            log.trace("SQL: " + sql);
+            rs = ps.executeQuery();
+            return fetchMultipleResults(rs);
+        } catch (SQLException e) {
+            logger.error("SQLException: " + e.getMessage(), e);
+            throw new DaoException("SQLException: " + e.getMessage(), e);
+        } catch (Exception e) {
+            logger.error("Exception: " + e.getMessage(), e);
+            throw new DaoException("Exception: " + e.getMessage(), e);
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception e) {
+            }
+        }
+    }
 
     public Pedido[] findWhereCodigoEquals(Long pk) throws DaoException {
         Connection con = null;

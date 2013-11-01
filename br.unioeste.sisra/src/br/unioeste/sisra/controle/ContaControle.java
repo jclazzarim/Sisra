@@ -16,6 +16,7 @@ import br.unioeste.sisra.persistencia.dao.MesaDao;
 import br.unioeste.sisra.persistencia.factory.PostgresqlDaoFactory;
 import br.unioeste.sisra.utils.DataUtils;
 import java.sql.Timestamp;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -40,10 +41,11 @@ public class ContaControle {
         Conta conta = new Conta();
         conta.setId(to.getId());
         conta.setDescricao(to.getDescricao());
-        conta.setHoraAbertura(new Timestamp(to.getHoraAbertura().getTime()));
-        conta.setHoraFechamento(to.getHoraFechamento() == null ? null : new Timestamp(to.getHoraFechamento().getTime()));
+        conta.setHoraAbertura(to.getHoraAbertura());
+        conta.setHoraFechamento(to.getHoraFechamento());
 
         conta.setMesa(MesaControle.mesaTOAdapter(to.getMesaTO()));
+        conta.setTotal(new Double(to.getTotal()));
         return conta;
     }
 
@@ -60,14 +62,29 @@ public class ContaControle {
                 contaDao.insert(conta, conta.getId());
             } else {
                 contaDao.update(conta.getId(), conta);
-            }            
+            }
         } catch (DaoException ex) {
             Logger.getLogger(ContaControle.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         //Atualiza se a mesa está ou não ocupada
         MesaControle mesaControle = new MesaControle(null);
         mesaControle.atualizarMesaOcupada(to.getMesaTO());
+    }
+
+    public void fecharConta(String pk) throws DaoException, ValidacaoException, Exception {
+
+        ContaDao dao = PostgresqlDaoFactory.getDaoFactory().getContaDao();
+        Conta[] contas;
+
+        Long idConta = new ContaValidacao().validaLong(pk);
+        contas = dao.findWhereCodigoEquals(idConta);
+
+        Conta conta = contas[0];
+        conta.setHoraFechamento(new Date());
+
+        gravar(conta.toTO(), false);
+
     }
 
     // ------------------------------------------------------------------------
@@ -93,6 +110,21 @@ public class ContaControle {
         } catch (DaoException ex) {
             throw new Exception(ex);
         }
+    }
+
+    public void buscarContasAbertas() throws DaoException, Exception {
+        ContaDao dao = PostgresqlDaoFactory.getDaoFactory().getContaDao();
+        Conta[] contas;
+        contas = dao.findAll();
+        Conta[] retorno = new Conta[contas.length];
+        
+        for (int i = 0; i < retorno.length; i++) {
+            Conta conta = contas[i];
+            if (conta.getHoraFechamento() == null) {
+                retorno[i] = conta;
+            }
+        }
+        listener.exibirBusca(converterEntidadesEmTO(retorno));
     }
 
     public void buscarContasPorDescricao(String text) {

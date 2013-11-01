@@ -6,8 +6,6 @@
 
 package br.unioeste.sisra.modelo.to;
 
-import br.unioeste.sisra.modelo.entidade.Conta;
-import br.unioeste.sisra.modelo.entidade.PedidoItem;
 import java.util.ArrayList;
 import java.util.Date;
 

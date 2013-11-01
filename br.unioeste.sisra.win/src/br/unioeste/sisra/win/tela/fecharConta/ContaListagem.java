@@ -112,8 +112,8 @@ public class ContaListagem extends javax.swing.JPanel {
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
         try {
-            String pk = (String) tblContaModel.getValueAt(tblContas.getSelectedRow(), FuncionarioActivity.Campo.ID);
-            activity.editarConta(pk);
+            String pk = (String) tblContaModel.getValueAt(tblContas.getSelectedRow(), FecharContaActivity.Campo.ID);
+            activity.fecharConta(pk);
         } catch (Exception ex) {
             handler.handle(ex);
         }
@@ -121,9 +121,9 @@ public class ContaListagem extends javax.swing.JPanel {
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
         try {
-            String pk = (String) tblContaModel.getValueAt(tblContas.getSelectedRow(), FuncionarioActivity.Campo.ID);
-            String nome = (String) tblContaModel.getValueAt(tblContas.getSelectedRow(), FuncionarioActivity.Campo.NOME);
-            activity.excluirFuncionario(pk, nome);
+            String pk = (String) tblContaModel.getValueAt(tblContas.getSelectedRow(), FecharContaActivity.Campo.ID);
+            String nome = (String) tblContaModel.getValueAt(tblContas.getSelectedRow(), FecharContaActivity.Campo.DESCRICAO);
+            activity.excluirConta(pk, nome);
         } catch (Exception ex) {
             handler.handle(ex);
         }
@@ -131,7 +131,7 @@ public class ContaListagem extends javax.swing.JPanel {
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         try {
-            activity.buscarConta(txtBusca.getText(), FuncionarioActivity.Campo.ID);
+            activity.buscarConta();
         } catch (Exception e) {
             handler.handle(e);
         }
@@ -172,7 +172,7 @@ public class ContaListagem extends javax.swing.JPanel {
     }
 
     public void atualizaConta(ContaTO c) {
-        final int idLinha = tblContaModel.getIdLinha(FuncionarioActivity.Campo.ID, String.valueOf(c.getId()));
+        final int idLinha = tblContaModel.getIdLinha(FecharContaActivity.Campo.ID, String.valueOf(c.getId()));
         if (idLinha >= 0) {
             tblContaModel.editarRow(idLinha, toArrayString(c));
         }
@@ -180,7 +180,7 @@ public class ContaListagem extends javax.swing.JPanel {
     }
 
     public void remover(String pk) {
-        tblContaModel.removeRow(pk, FuncionarioActivity.Campo.ID);
+        tblContaModel.removeRow(pk, FecharContaActivity.Campo.ID);
         tblContas.updateUI();
     }
 
