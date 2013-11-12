@@ -78,7 +78,7 @@ public class FecharContaActivity implements IContaListener{
         fd.setVisible(true);
     }
 
-    void buscarConta() {
+   public void buscarConta() {
         try {
             controlador.buscarContasAbertas();
         } catch (DaoException ex) {

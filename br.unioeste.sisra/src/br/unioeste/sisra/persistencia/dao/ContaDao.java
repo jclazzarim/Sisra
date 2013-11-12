@@ -47,7 +47,7 @@ public class ContaDao extends PostgresDao {
     //Atualização
     protected static final String SQL_UPDATE = ""
             + "UPDATE " + NAME_ENTITY + " SET "
-            + COLUMN_HR_ABERTURA + " = ?, " + COLUMN_HR_FECHAMENTO + " = ?"
+            + COLUMN_HR_ABERTURA + " = ?, " + COLUMN_HR_FECHAMENTO + " = ?, "
             + COLUMN_TOTAL + " = ?, "+COLUMN_DESCRICAO+ " = ?, "+COLUMN_ID_MESA+" = ? " + "WHERE " + COLUMN_ID + " = ?";
     //Remoção
     protected static final String SQL_DELETE = "DELETE FROM " + NAME_ENTITY + " WHERE " + COLUMN_ID + " = ?";

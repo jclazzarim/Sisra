@@ -232,6 +232,7 @@ public class TelaPrincial extends javax.swing.JFrame {
         jpPrincipal.removeAll();
         jpPrincipal.add(contaActivity.getTela(), Tela.CONTA);
         jpPrincipal.revalidate();
+        contaActivity.buscarConta();
     }//GEN-LAST:event_btContaActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

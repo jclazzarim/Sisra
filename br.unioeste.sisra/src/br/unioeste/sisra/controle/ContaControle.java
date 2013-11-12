@@ -12,10 +12,7 @@ import br.unioeste.sisra.modelo.listener.IContaListener;
 import br.unioeste.sisra.modelo.to.ContaTO;
 import br.unioeste.sisra.modelo.to.MesaTO;
 import br.unioeste.sisra.persistencia.dao.ContaDao;
-import br.unioeste.sisra.persistencia.dao.MesaDao;
 import br.unioeste.sisra.persistencia.factory.PostgresqlDaoFactory;
-import br.unioeste.sisra.utils.DataUtils;
-import java.sql.Timestamp;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -117,13 +114,14 @@ public class ContaControle {
         Conta[] contas;
         contas = dao.findAll();
         Conta[] retorno = new Conta[contas.length];
-        
+
         for (int i = 0; i < retorno.length; i++) {
             Conta conta = contas[i];
             if (conta.getHoraFechamento() == null) {
                 retorno[i] = conta;
             }
         }
+
         listener.exibirBusca(converterEntidadesEmTO(retorno));
     }
 
@@ -162,8 +160,11 @@ public class ContaControle {
     private ContaTO[] converterEntidadesEmTO(Conta[] contas) throws Exception {
         ContaTO[] result = new ContaTO[contas.length];
         int i = 0;
+
         for (Conta c : contas) {
-            result[i++] = c.toTO();
+            if (c != null) {
+                result[i++] = c.toTO();
+            }
         }
 
         return result;
